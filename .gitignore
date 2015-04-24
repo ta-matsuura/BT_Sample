@@ -1,0 +1,8 @@
+.classpath
+.project
+.settings/
+gen/
+libs/
+bin/
+*.swp
+**/*.swp
