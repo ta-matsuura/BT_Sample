@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.ParcelUuid;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -33,7 +34,7 @@ public class MainActivity extends Activity implements BluetoothAdapter.LeScanCal
     private BluetoothManager mBluetoothManager;
     private BluetoothGatt mBluetoothGatt;
     private TextView mStatusText;
- 
+     
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
          Log.i(TAG, "onActivityResult");
@@ -93,8 +94,9 @@ public class MainActivity extends Activity implements BluetoothAdapter.LeScanCal
             }
         }, SCAN_PERIOD);
  
+        UUID[] uuid = {UUID.fromString(BleUuid.SERVICE_UUID)};
         //mBluetoothAdapter.stopLeScan(this);
-        mBluetoothAdapter.startLeScan(this);
+        mBluetoothAdapter.startLeScan(uuid, this);
         setStatus(BleStatus.SCANNING);
     }
  
