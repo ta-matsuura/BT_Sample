@@ -3,7 +3,6 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:padding="20dp">
- 
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -13,7 +12,6 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="0dp"
             android:id="@+id/textView"/>
- 
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,5 +37,60 @@
             android:id="@+id/btn_disconnect"
             android:layout_alignTop="@+id/btn_connect"
             android:layout_toRightOf="@id/btn_connect"/> 
+   	<ImageView
+		android:src="@android:drawable/divider_horizontal_textfield"
+		android:layout_marginTop="20dp"
+		android:layout_marginBottom="20dp"
+   	    android:id="@+id/divider1"
+		android:layout_width="fill_parent"
+		android:layout_height="3dip"
+		android:scaleType="fitXY"
+		android:gravity="fill_horizontal"
+		android:layout_below="@id/btn_connect"/>
+   	
+    <EditText
+        android:id="@+id/editor1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/divider1"
+        android:text="Hello" />	
+    <Button
+        android:id="@+id/btn_write"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Write"
+        android:layout_below="@id/editor1"/> 
+
+   	<ImageView
+   	    android:id="@+id/divider2"
+		android:layout_width="fill_parent"
+		android:layout_height="3dip"
+		android:src="@android:drawable/divider_horizontal_textfield"
+		android:scaleType="fitXY"
+		android:gravity="fill_horizontal"
+		android:layout_marginTop="20dp"
+		android:layout_marginBottom="20dp"
+		android:layout_below="@id/btn_write"/> 
+   	<TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Read Result : "
+        android:id="@+id/read_title"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@id/divider2"/>   	
+   	<TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="none"
+        android:id="@+id/read_result"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/read_title"
+        android:layout_below="@id/divider2"/>
+    <Button
+        android:id="@+id/btn_read"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Read"
+        android:layout_below="@id/read_title"/> 	
 
 </RelativeLayout>
