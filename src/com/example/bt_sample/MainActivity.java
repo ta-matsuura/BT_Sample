@@ -1,33 +1,22 @@
 package com.example.bt_sample;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.bluetooth.*;
-import android.bluetooth.le.BluetoothLeScanner;
-import android.bluetooth.le.ScanSettings;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.ParcelUuid;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
  
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.UUID;
  
 public class MainActivity extends Activity implements BluetoothAdapter.LeScanCallback {
     /** BLE 機器スキャンタイムアウト (ミリ秒) */
-    private static final long SCAN_PERIOD = 10000;
+    private static final long SCAN_PERIOD = 7000;
  
     private static final String TAG = "BLESample";
-//    protected static final int REQUEST_ENABLE_BLUETOOTH = 0;
     private static BleStatus mStatus = BleStatus.DISCONNECTED;
     private static Handler mHandler;
     private BluetoothAdapter mBluetoothAdapter;
@@ -38,9 +27,7 @@ public class MainActivity extends Activity implements BluetoothAdapter.LeScanCal
     
     private BluetoothGattCallback mBluetoothGattCallback;
     private Context mContext;
-    private ArrayList<String> scanList;
     private static ProgressDialog waitDialog;
-    private Thread thread;
     
     public static BluetoothGatt getBluetoothGatt() {
       return mBluetoothGatt;
@@ -124,7 +111,7 @@ public class MainActivity extends Activity implements BluetoothAdapter.LeScanCal
 //        UUID[] uuids = {UUID.fromString(BleUuid.SERVICE_UUID),
 //            UUID.fromString(BleUuid.SERVICE_DATA_UUID),
 //            UUID.fromString(BleUuid.CHAR_INFO)};
-
+      Log.d(TAG, "CAll  mBluetoothAdapter.startLeScan(this);");
       mBluetoothAdapter.startLeScan(this);
       setStatus(BleStatus.SCANNING);
     }
@@ -180,7 +167,7 @@ public class MainActivity extends Activity implements BluetoothAdapter.LeScanCal
       }
       return dType;
    }
- 
+
     @Override
     public void onLeScan(BluetoothDevice device, int rssi, byte[] scanRecord) {
       String uuid = MyUtils.makeUuidFromAdv(scanRecord);
@@ -188,8 +175,8 @@ public class MainActivity extends Activity implements BluetoothAdapter.LeScanCal
       if (uuid.equals(BleUuid.SERVICE_UUID)) {
         Log.d(TAG, "uuid : " + uuid);
       }
-//      ProgressDialog progressDialog = new ProgressDialog(this);
-//      progressDialog.show();
+      ProgressDialog progressDialog = new ProgressDialog(this);
+      progressDialog.show();
 
       Log.d(TAG, "device found: " + device.getName());
       Log.d(TAG, "rssi: " + rssi);
