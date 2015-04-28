@@ -1,6 +1,8 @@
 package com.example.bt_sample;
 
 public class MyUtils {
+  public final static int READ = 0;
+  public final static int WRITE = 1;
   
   /* Advertise packetからUUIDを作成する。Android 4.4以下では
    * UUIDをAPIで取得できない。

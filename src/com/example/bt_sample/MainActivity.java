@@ -9,10 +9,13 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
  
  
-public class MainActivity extends Activity implements BluetoothAdapter.LeScanCallback {
+public class MainActivity extends Activity{
     /** BLE 機器スキャンタイムアウト (ミリ秒) */
     private static final long SCAN_PERIOD = 7000;
  
@@ -25,10 +28,20 @@ public class MainActivity extends Activity implements BluetoothAdapter.LeScanCal
 
     private TextView mStatusText;
     
-    private BluetoothGattCallback mBluetoothGattCallback;
-    private Context mContext;
+    private BluetoothGattCallback mReadCallback;
+    private BluetoothGattCallback mWriteCallback;
+
     private static ProgressDialog waitDialog;
-    
+    public static BluetoothDevice mDevice;
+    private Button mReadBtn;
+    private Button mWriteBtn;
+    private EditText mEditText;
+    private static String mWriteString;
+  
+    public static String getmWriteString() {
+      return mWriteString;
+    }
+
     public static BluetoothGatt getBluetoothGatt() {
       return mBluetoothGatt;
     }
@@ -36,22 +49,9 @@ public class MainActivity extends Activity implements BluetoothAdapter.LeScanCal
     public static void setBluetoothGatt(BluetoothGatt bluetoothGatt) {
       mBluetoothGatt = bluetoothGatt;
     }
-    
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//         Log.i(TAG, "onActivityResult");
-//         if (resultCode == RESULT_OK) {
-//              if (requestCode == REQUEST_ENABLE_BLUETOOTH) {
-//                   Log.d(TAG, "success");
-//                   connect();
-//              }
-//         }
-//    }
-    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mContext = getApplicationContext();
         setContentView(R.layout.activity_main);
  
         mBluetoothManager = (BluetoothManager)getSystemService(BLUETOOTH_SERVICE);
@@ -59,12 +59,6 @@ public class MainActivity extends Activity implements BluetoothAdapter.LeScanCal
         findViewById(R.id.btn_connect).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//              if (mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()) {
-//                  Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-//                  startActivityForResult(enableBtIntent, REQUEST_ENABLE_BLUETOOTH);
-//              }else {
-//                connect();
-//              }
               connect();
             }
         });
@@ -74,9 +68,13 @@ public class MainActivity extends Activity implements BluetoothAdapter.LeScanCal
                 disconnect();
             }
         });
- 
         mStatusText = (TextView)findViewById(R.id.text_status);
- 
+        mWriteBtn   = (Button)findViewById(R.id.btn_write);
+        mReadBtn    = (Button)findViewById(R.id.btn_read);
+        mWriteBtn.setOnClickListener(writeClicked);
+        mReadBtn.setOnClickListener(readClicked);
+        mEditText   = (EditText)findViewById(R.id.editor1);
+
         mHandler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
@@ -95,42 +93,47 @@ public class MainActivity extends Activity implements BluetoothAdapter.LeScanCal
       mHandler.postDelayed(new Runnable() {
           @Override
           public void run() {
-            Log.d(TAG, "10秒たったので、scan終了");
+            Log.d(TAG, "7秒たったので、scan終了");
             waitDialog.dismiss();
-            mBluetoothAdapter.stopLeScan(MainActivity.this);
-            if (BleStatus.SCANNING.equals(mStatus)) {
-              setStatus(BleStatus.CLOSED);
+            if (mDevice != null) {
+              Toast.makeText(getApplicationContext(), mDevice.toString() + "を見つけました", Toast.LENGTH_LONG).show();
+              mBluetoothAdapter.stopLeScan(mLeScanCallback);
+              setStatus(BleStatus.DEVICE_FOUND);
+            }else {
+              if (BleStatus.SCANNING.equals(mStatus)) {
+                setStatus(BleStatus.CLOSED);
+              }
             }
           }
       }, SCAN_PERIOD);
       Log.d(TAG, "START ------> LEScan: ");
-      if(mBluetoothGattCallback == null) {
-        mBluetoothGattCallback = new MyBluetoothGattCallback(getApplicationContext());
-      }
       /* startLeScan()の第一引数はAndroidのバグがあり機能しない */
 //        UUID[] uuids = {UUID.fromString(BleUuid.SERVICE_UUID),
 //            UUID.fromString(BleUuid.SERVICE_DATA_UUID),
 //            UUID.fromString(BleUuid.CHAR_INFO)};
       Log.d(TAG, "CAll  mBluetoothAdapter.startLeScan(this);");
-      mBluetoothAdapter.startLeScan(this);
+      mBluetoothAdapter.startLeScan(mLeScanCallback);
       setStatus(BleStatus.SCANNING);
     }
  
     /** BLE 機器との接続を解除する */
     private void disconnect() {
       Log.d(TAG, "START ------> disconnect(): ");
+      TextView tx = (TextView)findViewById(R.id.read_result);
+      tx.setText("none");
+      mDevice = null;
       if(waitDialog != null) {
         waitDialog.dismiss();
       }
-      mBluetoothAdapter.stopLeScan(this);
-        if (mBluetoothGatt != null) {
-            mBluetoothGatt.close();
-            mBluetoothGatt = null;
-        }
-        setStatus(BleStatus.CLOSED);
+      mBluetoothAdapter.stopLeScan(mLeScanCallback);
+      if (mBluetoothGatt != null) {
+        mBluetoothGatt.close();
+        mBluetoothGatt = null;
+      }
+      setStatus(BleStatus.CLOSED);
     }
     
-    private String getBondState(int state) {
+    private static String getBondState(int state) {
       String strState;
       switch (state) {
       case BluetoothDevice.BOND_BONDED:
@@ -147,7 +150,7 @@ public class MainActivity extends Activity implements BluetoothAdapter.LeScanCal
       }
       return strState;
    }
-   private String getDeviceType(int type) {
+   private static String getDeviceType(int type) {
       String dType;
       switch (type) {
       case BluetoothDevice.DEVICE_TYPE_UNKNOWN:
@@ -167,16 +170,15 @@ public class MainActivity extends Activity implements BluetoothAdapter.LeScanCal
       }
       return dType;
    }
-
+   private static BluetoothAdapter.LeScanCallback mLeScanCallback = new BluetoothAdapter.LeScanCallback() {
     @Override
     public void onLeScan(BluetoothDevice device, int rssi, byte[] scanRecord) {
       String uuid = MyUtils.makeUuidFromAdv(scanRecord);
 
       if (uuid.equals(BleUuid.SERVICE_UUID)) {
         Log.d(TAG, "uuid : " + uuid);
+        mDevice = device;
       }
-      ProgressDialog progressDialog = new ProgressDialog(this);
-      progressDialog.show();
 
       Log.d(TAG, "device found: " + device.getName());
       Log.d(TAG, "rssi: " + rssi);
@@ -192,7 +194,6 @@ public class MainActivity extends Activity implements BluetoothAdapter.LeScanCal
 //          Log.d(TAG, "uuids : " + uuids[i].toString());
 //        }
 //      }
-            
 
       Log.d(TAG, "device.toString : " + device.toString());
       Log.d(TAG, "device.getType : " + getDeviceType(device.getType()));
@@ -203,9 +204,7 @@ public class MainActivity extends Activity implements BluetoothAdapter.LeScanCal
       // 省電力のためスキャンを停止する
       //mBluetoothAdapter.stopLeScan(this);
  
-      // GATT接続を試みる
-      //mBluetoothGatt = device.connectGatt(this, false, mBluetoothGattCallback);
-    }
+    }};
      
     public static void setStatus(BleStatus status) {
         mStatus = status;
@@ -231,4 +230,40 @@ public class MainActivity extends Activity implements BluetoothAdapter.LeScanCal
             return message;
         }
     }
+    
+    private View.OnClickListener writeClicked = new View.OnClickListener() {
+      public void onClick(View v) {
+        Log.v("Button","onClick writeClicked");
+        if (mDevice == null) {
+          return;
+        }
+        mWriteString = mEditText.getText().toString();
+        if (mWriteCallback == null) {
+          mWriteCallback = new MyBluetoothGattCallback(getApplicationContext(), MyUtils.WRITE, myHandler);
+        }
+        mBluetoothGatt = mDevice.connectGatt(getApplicationContext(), false, mWriteCallback);
+      }
+    };
+    private View.OnClickListener readClicked = new View.OnClickListener() {
+      public void onClick(View v) {
+        Log.v("Button","onClick readClicked");
+        if (mDevice == null) {
+          return;
+        }
+        if(mReadCallback == null) {
+          mReadCallback = new MyBluetoothGattCallback(getApplicationContext(), MyUtils.READ, myHandler);
+        }
+        mBluetoothGatt = mDevice.connectGatt(getApplicationContext(), false, mReadCallback);
+
+      }
+    };
+    private BleScanGattHandler myHandler = new BleScanGattHandler(){
+      @Override
+      public void onProcessCompleted(Bundle bundle) {
+        String str = bundle.get("char_read_result").toString();
+        TextView tx = (TextView)findViewById(R.id.read_result);
+        tx.setText(str);
+      }
+    };
+
 }
