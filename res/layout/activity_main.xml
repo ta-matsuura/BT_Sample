@@ -56,6 +56,7 @@
         android:text="Hello" />	
     <Button
         android:id="@+id/btn_write"
+        android:onClick="onClickWriteButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Write"
@@ -88,6 +89,7 @@
         android:layout_below="@id/divider2"/>
     <Button
         android:id="@+id/btn_read"
+        android:onClick="onClickReadButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Read"

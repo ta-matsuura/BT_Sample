@@ -9,15 +9,17 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
  
  
-public class MainActivity extends Activity{
+public class MainActivity extends Activity {
+	protected Context mContext;
     /** BLE 機器スキャンタイムアウト (ミリ秒) */
-    private static final long SCAN_PERIOD = 7000;
+    private static final long SCAN_PERIOD = 3500;
  
     private static final String TAG = "BLESample";
     private static BleStatus mStatus = BleStatus.DISCONNECTED;
@@ -31,27 +33,21 @@ public class MainActivity extends Activity{
     private BluetoothGattCallback mReadCallback;
     private BluetoothGattCallback mWriteCallback;
 
-    private static ProgressDialog waitDialog;
     public static BluetoothDevice mDevice;
-    private Button mReadBtn;
-    private Button mWriteBtn;
     private EditText mEditText;
     private static String mWriteString;
+    private static ProgressDialog mDialog;
   
     public static String getmWriteString() {
       return mWriteString;
     }
 
-    public static BluetoothGatt getBluetoothGatt() {
-      return mBluetoothGatt;
-    }
-
-    public static void setBluetoothGatt(BluetoothGatt bluetoothGatt) {
-      mBluetoothGatt = bluetoothGatt;
-    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mContext = getApplicationContext();
+        mDialog = new ProgressDialog(this);
+
         setContentView(R.layout.activity_main);
  
         mBluetoothManager = (BluetoothManager)getSystemService(BLUETOOTH_SERVICE);
@@ -69,12 +65,8 @@ public class MainActivity extends Activity{
             }
         });
         mStatusText = (TextView)findViewById(R.id.text_status);
-        mWriteBtn   = (Button)findViewById(R.id.btn_write);
-        mReadBtn    = (Button)findViewById(R.id.btn_read);
-        mWriteBtn.setOnClickListener(writeClicked);
-        mReadBtn.setOnClickListener(readClicked);
         mEditText   = (EditText)findViewById(R.id.editor1);
-
+        
         mHandler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
@@ -85,21 +77,21 @@ public class MainActivity extends Activity{
  
     /** BLE機器を検索する */
     private void connect() {
-      waitDialog = new ProgressDialog(this);
-      waitDialog.setMessage("スキャン中・・・");
-      waitDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-      waitDialog.setCanceledOnTouchOutside(false);
-      waitDialog.show();
+      mDialog.setMessage("スキャン中・・・");
+      mDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+      mDialog.setCanceledOnTouchOutside(false);
+      mDialog.show();
       mHandler.postDelayed(new Runnable() {
           @Override
           public void run() {
-            Log.d(TAG, "7秒たったので、scan終了");
-            waitDialog.dismiss();
+            Log.d(TAG, "3.5秒たったので、scan終了します");
+            mBluetoothAdapter.stopLeScan(mLeScanCallback);
+            mDialog.dismiss();
             if (mDevice != null) {
               Toast.makeText(getApplicationContext(), mDevice.toString() + "を見つけました", Toast.LENGTH_LONG).show();
-              mBluetoothAdapter.stopLeScan(mLeScanCallback);
               setStatus(BleStatus.DEVICE_FOUND);
             }else {
+              Toast.makeText(getApplicationContext(), "見つかりませんでした", Toast.LENGTH_LONG).show();
               if (BleStatus.SCANNING.equals(mStatus)) {
                 setStatus(BleStatus.CLOSED);
               }
@@ -122,8 +114,8 @@ public class MainActivity extends Activity{
       TextView tx = (TextView)findViewById(R.id.read_result);
       tx.setText("none");
       mDevice = null;
-      if(waitDialog != null) {
-        waitDialog.dismiss();
+      if(MainActivity.mDialog != null) {
+    	  mDialog.dismiss();
       }
       mBluetoothAdapter.stopLeScan(mLeScanCallback);
       if (mBluetoothGatt != null) {
@@ -231,39 +223,47 @@ public class MainActivity extends Activity{
         }
     }
     
-    private View.OnClickListener writeClicked = new View.OnClickListener() {
-      public void onClick(View v) {
-        Log.v("Button","onClick writeClicked");
-        if (mDevice == null) {
-          return;
-        }
-        mWriteString = mEditText.getText().toString();
-        if (mWriteCallback == null) {
-          mWriteCallback = new MyBluetoothGattCallback(getApplicationContext(), MyUtils.WRITE, myHandler);
-        }
-        mBluetoothGatt = mDevice.connectGatt(getApplicationContext(), false, mWriteCallback);
+    public void onClickWriteButton(View v) {
+      Log.v("Button","onClick writeClicked");
+      if (mDevice == null) {
+        return;
       }
-    };
-    private View.OnClickListener readClicked = new View.OnClickListener() {
-      public void onClick(View v) {
-        Log.v("Button","onClick readClicked");
-        if (mDevice == null) {
-          return;
-        }
-        if(mReadCallback == null) {
-          mReadCallback = new MyBluetoothGattCallback(getApplicationContext(), MyUtils.READ, myHandler);
-        }
-        mBluetoothGatt = mDevice.connectGatt(getApplicationContext(), false, mReadCallback);
+      mWriteString = mEditText.getText().toString();
+      if (mWriteCallback == null) {
+        mWriteCallback = new MyBluetoothGattCallback(getApplicationContext(), MyUtils.WRITE, myHandler);
+      }
+      mDialog.setMessage("write・・・");
+      mDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+      mDialog.setCanceledOnTouchOutside(false);
+      mDialog.show();
 
+      mBluetoothGatt = mDevice.connectGatt(getApplicationContext(), false, mWriteCallback);
+    }
+    public void onClickReadButton(View v) {
+      Log.v("Button","onClick readClicked");
+      if (mDevice == null) {
+        return;
       }
-    };
+      if(mReadCallback == null) {
+        mReadCallback = new MyBluetoothGattCallback(getApplicationContext(), MyUtils.READ, myHandler);
+      }
+      mDialog.setMessage("read・・・");
+      mDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+      mDialog.setCanceledOnTouchOutside(false);
+      mDialog.show();
+      mBluetoothGatt = mDevice.connectGatt(getApplicationContext(), false, mReadCallback);
+    }
     private BleScanGattHandler myHandler = new BleScanGattHandler(){
       @Override
       public void onProcessCompleted(Bundle bundle) {
-        String str = bundle.get("char_read_result").toString();
-        TextView tx = (TextView)findViewById(R.id.read_result);
-        tx.setText(str);
+    	if(mDialog.isShowing()) {
+    		  mDialog.dismiss();
+    	}
+    	mBluetoothGatt.close();
+        if (bundle.get("char_read_result") != null) {
+          TextView tx = (TextView)findViewById(R.id.read_result);
+          tx.setText(bundle.get("char_read_result").toString());
+        }
       }
     };
-
 }

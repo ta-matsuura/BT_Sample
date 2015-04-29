@@ -30,11 +30,9 @@ public class MyBluetoothGattCallback extends BluetoothGattCallback{
   @Override
   public void onCharacteristicRead(BluetoothGatt gatt,
       BluetoothGattCharacteristic characteristic, int status) {
-    super.onCharacteristicRead(gatt, characteristic, status);
     String str = characteristic.getStringValue(0);
-    Log.d(TAG, "STRT -> onCharacteristicRead() status(0:success, 257:fail) : " + status );
-    Log.d(TAG, "String that you read is ... " + str);
-    
+	Log.d(TAG, "STRT -> onCharacteristicRead() status(0:success, 257:fail) : " + status );
+	Log.d(TAG, "String that you read is ... " + str);    super.onCharacteristicRead(gatt, characteristic, status);
     Message message = new Message();
     Bundle bundle = new Bundle();
     bundle.putString("char_read_result", str);
@@ -45,9 +43,13 @@ public class MyBluetoothGattCallback extends BluetoothGattCallback{
   @Override
   public void onCharacteristicWrite(BluetoothGatt gatt,
       BluetoothGattCharacteristic characteristic, int status) {
-    super.onCharacteristicWrite(gatt, characteristic, status);
     Log.d(TAG, "STRT -> onCharacteristicWrite() status(0:success, 257:fail) : " + status);
-
+    super.onCharacteristicWrite(gatt, characteristic, status);
+    Message message = new Message();
+    Bundle bundle = new Bundle();
+    bundle.putString("char_write_result", characteristic.getStringValue(0));
+    message.setData(bundle);
+    mHandler.sendMessage(message);
   }
 
   @Override
@@ -105,7 +107,6 @@ public class MyBluetoothGattCallback extends BluetoothGattCallback{
     } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
       // GATT通信から切断された
       MainActivity.setStatus(BleStatus.DISCONNECTED);
-      MainActivity.setBluetoothGatt(null);
     } else if (newState == BluetoothProfile.STATE_CONNECTING) {
     } else if (newState == BluetoothProfile.STATE_DISCONNECTING) {
     }
@@ -144,6 +145,8 @@ public class MyBluetoothGattCallback extends BluetoothGattCallback{
       case  BluetoothGatt.GATT_WRITE_NOT_PERMITTED:
         state = "GATT_WRITE_NOT_PERMITTED";
         break;
+      default :
+    	state = state + " : " + s;
     }
     return state;
   }
@@ -179,7 +182,7 @@ public class MyBluetoothGattCallback extends BluetoothGattCallback{
             Log.d(TAG, " ----- > CHAR_ONOFF_STRING FOUND");
             if(characteristic.setValue(MainActivity.getmWriteString())) {
               if(gatt.writeCharacteristic(characteristic)){
-                Log.d(TAG, " write operation was initiated successfully");
+                Log.d(TAG, " Write request operation was initiated successfully. Please wait callback.");
               }else {
                 Log.d(TAG, " writeCharacteristic is failed");
               }
@@ -196,7 +199,9 @@ public class MyBluetoothGattCallback extends BluetoothGattCallback{
             MainActivity.setStatus(BleStatus.CHARACTERISTIC_NOT_FOUND);
           } else {
             Log.d(TAG, " ----- > CHAR_NAME_STRING FOUND");
-            gatt.readCharacteristic(characteristic);
+            if (gatt.readCharacteristic(characteristic)) {
+                Log.d(TAG, " Read request operation was initiated successfully. Please wait callback.");
+            }
           }          
         }
       }
