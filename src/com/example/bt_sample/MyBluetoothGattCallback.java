@@ -13,6 +13,7 @@ import android.bluetooth.BluetoothGattDescriptor;
 import android.bluetooth.BluetoothGattService;
 import android.bluetooth.BluetoothProfile;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Message;
 import android.util.Log;
@@ -21,18 +22,21 @@ public class MyBluetoothGattCallback extends BluetoothGattCallback{
   private static final String TAG = "BLESample";
   private int mType;
   private BleScanGattHandler mHandler;
+  private boolean isWriting;
 
   public MyBluetoothGattCallback(Context context, int type, BleScanGattHandler handler) {
     mType = type;
     mHandler = handler;
+    isWriting = false;
   }
 
   @Override
   public void onCharacteristicRead(BluetoothGatt gatt,
-      BluetoothGattCharacteristic characteristic, int status) {
+    BluetoothGattCharacteristic characteristic, int status) {
     String str = characteristic.getStringValue(0);
-	Log.d(TAG, "STRT -> onCharacteristicRead() status(0:success, 257:fail) : " + status );
-	Log.d(TAG, "String that you read is ... " + str);    super.onCharacteristicRead(gatt, characteristic, status);
+	  Log.d(TAG, "START -> onCharacteristicRead() status(0:success, 257:fail) : " + status );
+	  Log.d(TAG, "String that you read is ... " + str);
+	  super.onCharacteristicRead(gatt, characteristic, status);
     Message message = new Message();
     Bundle bundle = new Bundle();
     bundle.putString("char_read_result", str);
@@ -43,20 +47,27 @@ public class MyBluetoothGattCallback extends BluetoothGattCallback{
   @Override
   public void onCharacteristicWrite(BluetoothGatt gatt,
       BluetoothGattCharacteristic characteristic, int status) {
-    Log.d(TAG, "STRT -> onCharacteristicWrite() status(0:success, 257:fail) : " + status);
+    Log.d(TAG, "START -> onCharacteristicWrite() status(0:success, 257:fail) : " + status);
     super.onCharacteristicWrite(gatt, characteristic, status);
-    Message message = new Message();
-    Bundle bundle = new Bundle();
-    bundle.putString("char_write_result", characteristic.getStringValue(0));
-    message.setData(bundle);
-    mHandler.sendMessage(message);
+    
+    if(!isWriting) {
+      Message message = new Message();
+      Bundle bundle = new Bundle();
+      bundle.putString("char_write_result", characteristic.getStringValue(0));
+      message.setData(bundle);
+      mHandler.sendMessage(message);
+    } else {
+      Log.d(TAG, "waiting for finishing writing .....");
+      //gatt.executeReliableWrite();
+    }
+
   }
 
   @Override
   public void onCharacteristicChanged(BluetoothGatt gatt,
       BluetoothGattCharacteristic characteristic) {
     super.onCharacteristicChanged(gatt, characteristic);
-    Log.d(TAG, "STRT -> onCharacteristicChanged() ");
+    Log.d(TAG, "START -> onCharacteristicChanged() ");
 
   }
 
@@ -64,7 +75,7 @@ public class MyBluetoothGattCallback extends BluetoothGattCallback{
   public void onDescriptorRead(BluetoothGatt gatt,
       BluetoothGattDescriptor descriptor, int status) {
     super.onDescriptorRead(gatt, descriptor, status);
-    Log.d(TAG, "STRT -> onDescriptorRead() ");
+    Log.d(TAG, "START -> onDescriptorRead() ");
 
   }
 
@@ -72,34 +83,45 @@ public class MyBluetoothGattCallback extends BluetoothGattCallback{
   public void onDescriptorWrite(BluetoothGatt gatt,
       BluetoothGattDescriptor descriptor, int status) {
     super.onDescriptorWrite(gatt, descriptor, status);
-    Log.d(TAG, "STRT -> onDescriptorWrite() ");
+    Log.d(TAG, "START -> onDescriptorWrite() ");
 
   }
 
   @Override
   public void onReliableWriteCompleted(BluetoothGatt gatt, int status) {
     super.onReliableWriteCompleted(gatt, status);
-    Log.d(TAG, "STRT -> onReliableWriteCompleted() ");
+    Log.d(TAG, "START -> onReliableWriteCompleted() ");
 
   }
 
   @Override
   public void onReadRemoteRssi(BluetoothGatt gatt, int rssi, int status) {
     super.onReadRemoteRssi(gatt, rssi, status);
-    Log.d(TAG, "STRT -> onReadRemoteRssi() ");
+    Log.d(TAG, "START -> onReadRemoteRssi() ");
 
   }
 
   @Override
   public void onMtuChanged(BluetoothGatt gatt, int mtu, int status) {
     super.onMtuChanged(gatt, mtu, status);
-    Log.d(TAG, "STRT -> onMtuChanged() ");
+    Log.d(TAG, "START -> onMtuChanged() status(0:success, 257:fail) : " + status );
+    Log.d(TAG, " mtu : " + mtu); 
+    gatt.close();
 
   }
 
   @Override
   public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
     Log.d(TAG, "START ---> onConnectionStateChange : " + getGattStatus(status) + "  newState(2:connected, 0:disconn) : " + newState);
+    if (status != BluetoothGatt.GATT_SUCCESS) {
+      gatt.close();
+      Message message = new Message();
+      Bundle bundle = new Bundle();
+      message.setData(bundle);
+      mHandler.sendMessage(message);
+      MainActivity.setStatus(BleStatus.DISCONNECTED);
+      return;
+    }
     if (newState == BluetoothProfile.STATE_CONNECTED) {
       // GATTへ接続成功
       // サービスを検索する
@@ -107,6 +129,7 @@ public class MyBluetoothGattCallback extends BluetoothGattCallback{
     } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
       // GATT通信から切断された
       MainActivity.setStatus(BleStatus.DISCONNECTED);
+      gatt.close();
     } else if (newState == BluetoothProfile.STATE_CONNECTING) {
     } else if (newState == BluetoothProfile.STATE_DISCONNECTING) {
     }
@@ -180,7 +203,7 @@ public class MyBluetoothGattCallback extends BluetoothGattCallback{
             MainActivity.setStatus(BleStatus.CHARACTERISTIC_NOT_FOUND);
           } else {
             Log.d(TAG, " ----- > CHAR_ONOFF_STRING FOUND");
-            if(characteristic.setValue(MainActivity.getmWriteString())) {
+            if(characteristic.setValue(MainActivity.getWriteString())) {
               if(gatt.writeCharacteristic(characteristic)){
                 Log.d(TAG, " Write request operation was initiated successfully. Please wait callback.");
               }else {
@@ -203,9 +226,41 @@ public class MyBluetoothGattCallback extends BluetoothGattCallback{
                 Log.d(TAG, " Read request operation was initiated successfully. Please wait callback.");
             }
           }          
+        } else if (mType == MyUtils.REQ_MTU) {
+          //nothing to do...
+        } else if (mType == MyUtils.WRITE2) {
+//          if(!gatt.beginReliableWrite()) {
+//            Log.d(TAG, " beginReliableWrite is failed.");
+//            return;
+//          }
+          BluetoothGattCharacteristic charactaristic =
+              service.getCharacteristic(UUID.fromString(BleUuid.CHAR_ONOFF_STRING));
+          isWriting = true;
+          if(!writeCharactaristic(gatt, charactaristic)) {
+            isWriting = false;
+          }
         }
       }
     }
+  } // end of the function [onServicesDiscovered()]
+  
+  private boolean writeCharactaristic(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic){
+    boolean ret = false;
+    if(characteristic == null) {
+      Log.d(TAG, "ERROR: characteristic is null");
+      return ret;
+    }
+    if(characteristic.setValue(MainActivity.getWriteLongString())) {
+      if(gatt.writeCharacteristic(characteristic)){
+        Log.d(TAG, " Requested long String write. Please wait callback.");
+        ret = true;
+      }else {
+        Log.d(TAG, " writeCharacteristic is failed");
+      }
+    }else{
+      Log.d(TAG, " setValue is failed");
+    }
+    return ret;
   }
 }
 

@@ -9,4 +9,6 @@ public class BleUuid {
   public static final String CHAR_INFO          = "99999999-1111-4444-4444-111111111111";
   public static final String CHAR_NAME_STRING   = "99999999-2222-4444-4444-222222222222";
   public static final String CHAR_ONOFF_STRING  = "99999999-3333-4444-4444-222222222222";
+  public static final String TEST20             = "AAAA0020-3333-4444-4444-222222222222";
+
 }

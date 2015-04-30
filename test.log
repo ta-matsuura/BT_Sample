@@ -1,0 +1,906 @@
+--------- beginning of /dev/log/main
+I/ThermalEngine(  251): Sensor:substrate_therm:367000 mC
+--------- beginning of /dev/log/system
+I/ActivityManager(  859): Waited long enough for: ServiceRecord{42fba3d0 u0 com.kyocera.durauicompass/.DuraUICompassTimerService}
+E/XTWiFiLP( 1372): cannot send POSITION request message to XTWiFi-PE
+W/XTWiFiLP( 1372): IPC receiver thread ended, remove local client
+I/MQClient( 1372): unable to connect to [/data/misc/location/mq/location-mq-s]:[No such file or directory]
+W/XTWiFiLP( 1372): connection failure. count 1
+D/GCM     ( 1503): GcmService start Intent { act=com.google.android.gms.INITIALIZE flg=0x10 pkg=com.google.android.gms cmp=com.google.android.gms/.gcm.GcmService } com.google.android.gms.INITIALIZE
+D/dalvikvm( 1503): GC_EXPLICIT freed 1005K, 80% free 4169K/20600K, paused 2ms+3ms, total 28ms
+E/LocSvc_flp(  859): I/===> int flp_inject_location(FlpLocation*) line 194 
+E/LocSvc_api_v02(  859): I/---> locClientSendReq line 2333 QMI_LOC_INJECT_POSITION_REQ_V02
+E/LocSvc_ApiV02(  859): I/<--- void globalRespCb(locClientHandleType, uint32_t, locClientRespIndUnionType, void*) line 106 QMI_LOC_INJECT_POSITION_REQ_V02
+I/VacuumService( 1503): Vacuum at: now=1430392753835 tag=VacuumService
+I/GCoreUlr( 1310): Successfully inserted location
+I/GCoreUlr( 1310): Not calling LocationReporter, hasMoved: false, elapsed millis: 92771, request: Stationary(3600000)
+D/dalvikvm( 8267): GC_CONCURRENT freed 4902K, 70% free 6224K/20600K, paused 3ms+3ms, total 44ms
+W/dalvikvm( 1310): VFY: unable to find class referenced in signature (Lcom/android/location/provider/ActivityChangedEvent;)
+I/dalvikvm( 1310): Could not find method com.android.location.provider.ActivityChangedEvent.getActivityRecognitionEvents, referenced from method com.google.android.location.activity.ba.a
+W/dalvikvm( 1310): VFY: unable to resolve virtual method 4558: Lcom/android/location/provider/ActivityChangedEvent;.getActivityRecognitionEvents ()Ljava/lang/Iterable;
+D/dalvikvm( 1310): VFY: replacing opcode 0x6e at 0x0007
+D/dalvikvm( 1310): GC_EXPLICIT freed 987K, 76% free 5037K/20600K, paused 2ms+10ms, total 52ms
+E/DataBuffer( 1310): Internal data leak within a DataBuffer object detected!  Be sure to explicitly call release() on all DataBuffer extending objects when you are done with them. (internal object: com.google.android.gms.common.data.DataHolder@423e13e0)
+D/StatusBar.NetworkController( 1158): refreshViews: Data not connected!!
+D/StatusBar.NetworkController( 1158): refreshViews connected={ wifi } level=4 combinedSignalIconId=0x7f0201ad/com.android.systemui:drawable/stat_sys_wifi_signal_4_fully mobileLabel=au wifiLabel="wlan-t"xxxxXXXXxxxxXXXX emergencyOnly=false combinedLabel="wlan-t"xxxxXXXXxxxxXXXX mAirplaneMode=false mDataActivity=0 mPhoneSignalIconId=0x7f0201a0 mQSPhoneSignalIconId=0x7f020076 mDataDirectionIconId=0x0 mDataSignalIconId=0x7f0201a0 mDataTypeIconId=0x0 mQSDataTypeIconId=0x0 mNoSimIconId=0x0 mWifiIconId=0x7f0201ad mQSWifiIconId=0x7f02008f mBluetoothTetherIconId=0x10807a9
+I/WifiStateMachine(  859): [signalPoll] newRssi = -50
+I/WifiStateMachine(  859): [signalPoll] newLinkSpeed = 72
+D/StatusBar.NetworkController( 1158): refreshViews: Data not connected!!
+D/StatusBar.NetworkController( 1158): refreshViews connected={ wifi } level=4 combinedSignalIconId=0x7f0201ad/com.android.systemui:drawable/stat_sys_wifi_signal_4_fully mobileLabel=au wifiLabel="wlan-t"xxxxXXXXxxxxXXXX emergencyOnly=false combinedLabel="wlan-t"xxxxXXXXxxxxXXXX mAirplaneMode=false mDataActivity=0 mPhoneSignalIconId=0x7f0201a0 mQSPhoneSignalIconId=0x7f020076 mDataDirectionIconId=0x0 mDataSignalIconId=0x7f0201a0 mDataTypeIconId=0x0 mQSDataTypeIconId=0x0 mNoSimIconId=0x0 mWifiIconId=0x7f0201ad mQSWifiIconId=0x7f02008f mBluetoothTetherIconId=0x10807a9
+I/GAV2    ( 8559): Thread[GAThread,5,main]: No campaign data found.
+E/Parcel  (  316): Reading a NULL string not supported here.
+E/Parcel  (  316): Reading a NULL string not supported here.
+D/StatusBar.NetworkController( 1158): onSignalStrengthsChanged signalStrength=SignalStrength: 99 0 -120 -160 -120 -1 -1 31 -77 -7 178 2147483647 2147483647 gsm|lte level=4
+D/StatusBar.NetworkController( 1158): refreshViews: Data not connected!!
+D/StatusBar.NetworkController( 1158): refreshViews connected={ wifi } level=4 combinedSignalIconId=0x7f0201ad/com.android.systemui:drawable/stat_sys_wifi_signal_4_fully mobileLabel=au wifiLabel="wlan-t"xxxxXXXXxxxxXXXX emergencyOnly=false combinedLabel="wlan-t"xxxxXXXXxxxxXXXX mAirplaneMode=false mDataActivity=0 mPhoneSignalIconId=0x7f0201a0 mQSPhoneSignalIconId=0x7f020076 mDataDirectionIconId=0x0 mDataSignalIconId=0x7f0201a0 mDataTypeIconId=0x0 mQSDataTypeIconId=0x0 mNoSimIconId=0x0 mWifiIconId=0x7f0201ad mQSWifiIconId=0x7f02008f mBluetoothTetherIconId=0x10807a9
+I/dalvikvm( 8536): Could not find method android.os.UserManager.getUserProfiles, referenced from method com.google.android.gms.wearable.service.ap.a
+W/dalvikvm( 8536): VFY: unable to resolve virtual method 1062: Landroid/os/UserManager;.getUserProfiles ()Ljava/util/List;
+D/dalvikvm( 8536): VFY: replacing opcode 0x6e at 0x004d
+I/ActivityManager(  859): Killing 8209:com.kddi.android.email:EventReceiver/u0a43 (adj 15): empty #17
+I/ThermalEngine(  251): Sensor:pa_therm0:350000 mC
+I/ThermalEngine(  251): Sensor:substrate_therm:367000 mC
+I/WifiStateMachine(  859): [signalPoll] newRssi = -50
+I/WifiStateMachine(  859): [signalPoll] newLinkSpeed = 72
+I/MQClient( 1372): unable to connect to [/data/misc/location/mq/location-mq-s]:[No such file or directory]
+W/XTWiFiLP( 1372): connection failure. count 2
+D/StatusBar.NetworkController( 1158): onSignalStrengthsChanged signalStrength=SignalStrength: 99 0 -120 -160 -120 -1 -1 31 -77 -7 262 2147483647 2147483647 gsm|lte level=4
+D/StatusBar.NetworkController( 1158): refreshViews: Data not connected!!
+E/Parcel  (  316): Reading a NULL string not supported here.
+E/Parcel  (  316): Reading a NULL string not supported here.
+D/StatusBar.NetworkController( 1158): refreshViews connected={ wifi } level=4 combinedSignalIconId=0x7f0201ad/com.android.systemui:drawable/stat_sys_wifi_signal_4_fully mobileLabel=au wifiLabel="wlan-t"xxxxXXXXxxxxXXXX emergencyOnly=false combinedLabel="wlan-t"xxxxXXXXxxxxXXXX mAirplaneMode=false mDataActivity=0 mPhoneSignalIconId=0x7f0201a0 mQSPhoneSignalIconId=0x7f020076 mDataDirectionIconId=0x0 mDataSignalIconId=0x7f0201a0 mDataTypeIconId=0x0 mQSDataTypeIconId=0x0 mNoSimIconId=0x0 mWifiIconId=0x7f0201ad mQSWifiIconId=0x7f02008f mBluetoothTetherIconId=0x10807a9
+I/WifiStateMachine(  859): [signalPoll] newRssi = -50
+I/WifiStateMachine(  859): [signalPoll] newLinkSpeed = 72
+I/ThermalEngine(  251): Sensor:substrate_therm:365000 mC
+I/MQClient( 1372): unable to connect to [/data/misc/location/mq/location-mq-s]:[No such file or directory]
+W/XTWiFiLP( 1372): connection failure. count 3
+I/WifiStateMachine(  859): [signalPoll] newRssi = -50
+I/WifiStateMachine(  859): [signalPoll] newLinkSpeed = 72
+E/Parcel  (  316): Reading a NULL string not supported here.
+E/Parcel  (  316): Reading a NULL string not supported here.
+D/StatusBar.NetworkController( 1158): onSignalStrengthsChanged signalStrength=SignalStrength: 99 0 -120 -160 -120 -1 -1 31 -75 -7 284 2147483647 2147483647 gsm|lte level=4
+D/StatusBar.NetworkController( 1158): refreshViews: Data not connected!!
+D/StatusBar.NetworkController( 1158): refreshViews connected={ wifi } level=4 combinedSignalIconId=0x7f0201ad/com.android.systemui:drawable/stat_sys_wifi_signal_4_fully mobileLabel=au wifiLabel="wlan-t"xxxxXXXXxxxxXXXX emergencyOnly=false combinedLabel="wlan-t"xxxxXXXXxxxxXXXX mAirplaneMode=false mDataActivity=0 mPhoneSignalIconId=0x7f0201a0 mQSPhoneSignalIconId=0x7f020076 mDataDirectionIconId=0x0 mDataSignalIconId=0x7f0201a0 mDataTypeIconId=0x0 mQSDataTypeIconId=0x0 mNoSimIconId=0x0 mWifiIconId=0x7f0201ad mQSWifiIconId=0x7f02008f mBluetoothTetherIconId=0x10807a9
+I/ActivityManager(  859): Waited long enough for: ServiceRecord{42fed868 u0 jp.co.johospace.jorte/.service.JorteService}
+D/BLESample( 4901): START ------> LEScan: 
+D/BLESample( 4901): CAll  mBluetoothAdapter.startLeScan(this);
+D/BluetoothAdapter( 4901): startLeScan(): null
+D/BtGatt.GattService( 2675): registerClient() - UUID=63aed268-71b0-4483-b238-b8bc2849ae59
+D/BtGatt.btif( 2675): btif_gattc_register_app
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1000
+D/BtGatt.btif( 2675): btif_gattc_upstreams_evt: Event 0
+D/BtGatt.GattService( 2675): onClientRegistered() - UUID=63aed268-71b0-4483-b238-b8bc2849ae59, clientIf=5
+D/BluetoothAdapter( 4901): onClientRegistered() - status=0 clientIf=5
+D/BtGatt.GattService( 2675): startScan() - queue=0
+D/BtGatt.GattService( 2675): startScan() - adding client=5
+D/BtGatt.btif( 2675): btif_gattc_scan
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1002
+I/bt-hci  ( 2675): BLE HCI(id=62) event = 0x02)
+I/bt-hci  ( 2675): btu_ble_process_adv_pkt
+I/bt-hci  ( 2675): BLE HCI(id=62) event = 0x02)
+I/bt-hci  ( 2675): btu_ble_process_adv_pkt
+D/BtGatt.btif( 2675): btif_gattc_upstreams_evt: Event 4096
+D/BtGatt.GattService( 2675): onScanResult() - address=5A:B7:2A:02:7B:B3, rssi=-60
+D/BluetoothAdapter( 4901): onScanResult() - Device=5A:B7:2A:02:7B:B3 RSSI=-60
+D/BLESample( 4901): uuid : 11111111-2222-3333-4444-555555555555
+D/BLESample( 4901): device found: null
+D/BLESample( 4901): rssi: -60
+D/BLESample( 4901): scanRecord Length: 62
+D/BLESample( 4901): device.toString : 5A:B7:2A:02:7B:B3
+D/BLESample( 4901): device.getType : Unknown
+D/BLESample( 4901): device.getAddress(MAC Addr) : 5A:B7:2A:02:7B:B3
+D/BLESample( 4901): device.getBondState : 接続履歴なし
+I/bt-hci  ( 2675): BLE HCI(id=62) event = 0x02)
+I/bt-hci  ( 2675): btu_ble_process_adv_pkt
+I/bt-hci  ( 2675): BLE HCI(id=62) event = 0x02)
+I/bt-hci  ( 2675): btu_ble_process_adv_pkt
+D/BtGatt.btif( 2675): btif_gattc_upstreams_evt: Event 4096
+D/BtGatt.GattService( 2675): onScanResult() - address=5B:14:AC:28:2C:41, rssi=-83
+D/BluetoothAdapter( 4901): onScanResult() - Device=5B:14:AC:28:2C:41 RSSI=-83
+D/BLESample( 4901): device found: null
+D/BLESample( 4901): rssi: -83
+D/BLESample( 4901): scanRecord Length: 62
+D/BLESample( 4901): device.toString : 5B:14:AC:28:2C:41
+D/BLESample( 4901): device.getType : Unknown
+D/BLESample( 4901): device.getAddress(MAC Addr) : 5B:14:AC:28:2C:41
+D/BLESample( 4901): device.getBondState : 接続履歴なし
+I/bt-hci  ( 2675): BLE HCI(id=62) event = 0x02)
+I/bt-hci  ( 2675): btu_ble_process_adv_pkt
+I/bt-hci  ( 2675): BLE HCI(id=62) event = 0x02)
+I/bt-hci  ( 2675): btu_ble_process_adv_pkt
+I/bt-hci  ( 2675): BLE HCI(id=62) event = 0x02)
+I/bt-hci  ( 2675): btu_ble_process_adv_pkt
+I/bt-hci  ( 2675): BLE HCI(id=62) event = 0x02)
+I/bt-hci  ( 2675): btu_ble_process_adv_pkt
+I/bt-hci  ( 2675): BLE HCI(id=62) event = 0x02)
+I/bt-hci  ( 2675): btu_ble_process_adv_pkt
+I/bt-hci  ( 2675): BLE HCI(id=62) event = 0x02)
+I/bt-hci  ( 2675): btu_ble_process_adv_pkt
+I/bt-hci  ( 2675): BLE HCI(id=62) event = 0x02)
+I/bt-hci  ( 2675): btu_ble_process_adv_pkt
+I/bt-hci  ( 2675): BLE HCI(id=62) event = 0x02)
+I/bt-hci  ( 2675): btu_ble_process_adv_pkt
+I/ServiceManager(  318): Waiting for service AtCmdFwd...
+I/WifiStateMachine(  859): [signalPoll] newRssi = -48
+I/WifiStateMachine(  859): [signalPoll] newLinkSpeed = 72
+I/bt-hci  ( 2675): BLE HCI(id=62) event = 0x02)
+I/bt-hci  ( 2675): btu_ble_process_adv_pkt
+I/bt-hci  ( 2675): BLE HCI(id=62) event = 0x02)
+I/bt-hci  ( 2675): btu_ble_process_adv_pkt
+I/bt-hci  ( 2675): BLE HCI(id=62) event = 0x02)
+I/bt-hci  ( 2675): btu_ble_process_adv_pkt
+I/bt-hci  ( 2675): BLE HCI(id=62) event = 0x02)
+I/bt-hci  ( 2675): btu_ble_process_adv_pkt
+I/bt-hci  ( 2675): BLE HCI(id=62) event = 0x02)
+I/bt-hci  ( 2675): btu_ble_process_adv_pkt
+I/bt-hci  ( 2675): BLE HCI(id=62) event = 0x02)
+I/bt-hci  ( 2675): btu_ble_process_adv_pkt
+I/ThermalEngine(  251): Sensor:pa_therm0:350000 mC
+I/ThermalEngine(  251): Sensor:substrate_therm:364000 mC
+I/bt-hci  ( 2675): BLE HCI(id=62) event = 0x02)
+I/bt-hci  ( 2675): btu_ble_process_adv_pkt
+I/ServiceManager(  318): Waiting for service AtCmdFwd...
+I/bt-hci  ( 2675): BLE HCI(id=62) event = 0x02)
+I/bt-hci  ( 2675): btu_ble_process_adv_pkt
+I/bt-hci  ( 2675): BLE HCI(id=62) event = 0x02)
+I/bt-hci  ( 2675): btu_ble_process_adv_pkt
+I/bt-hci  ( 2675): BLE HCI(id=62) event = 0x02)
+I/bt-hci  ( 2675): btu_ble_process_adv_pkt
+I/bt-hci  ( 2675): BLE HCI(id=62) event = 0x02)
+I/bt-hci  ( 2675): btu_ble_process_adv_pkt
+I/bt-hci  ( 2675): BLE HCI(id=62) event = 0x02)
+I/bt-hci  ( 2675): btu_ble_process_adv_pkt
+I/bt-hci  ( 2675): BLE HCI(id=62) event = 0x02)
+I/bt-hci  ( 2675): btu_ble_process_adv_pkt
+I/bt-hci  ( 2675): BLE HCI(id=62) event = 0x02)
+I/bt-hci  ( 2675): btu_ble_process_adv_pkt
+D/StatusBar.NetworkController( 1158): refreshViews: Data not connected!!
+D/StatusBar.NetworkController( 1158): refreshViews connected={ wifi } level=4 combinedSignalIconId=0x7f0201ad/com.android.systemui:drawable/stat_sys_wifi_signal_4_fully mobileLabel=au wifiLabel="wlan-t"xxxxXXXXxxxxXXXX emergencyOnly=false combinedLabel="wlan-t"xxxxXXXXxxxxXXXX mAirplaneMode=false mDataActivity=0 mPhoneSignalIconId=0x7f0201a0 mQSPhoneSignalIconId=0x7f020076 mDataDirectionIconId=0x0 mDataSignalIconId=0x7f0201a0 mDataTypeIconId=0x0 mQSDataTypeIconId=0x0 mNoSimIconId=0x0 mWifiIconId=0x7f0201ad mQSWifiIconId=0x7f02008f mBluetoothTetherIconId=0x10807a9
+I/bt-hci  ( 2675): BLE HCI(id=62) event = 0x02)
+I/bt-hci  ( 2675): btu_ble_process_adv_pkt
+I/MQClient( 1372): unable to connect to [/data/misc/location/mq/location-mq-s]:[No such file or directory]
+W/XTWiFiLP( 1372): connection failure. count 4
+I/bt-hci  ( 2675): BLE HCI(id=62) event = 0x02)
+I/bt-hci  ( 2675): btu_ble_process_adv_pkt
+I/ServiceManager(  318): Waiting for service AtCmdFwd...
+I/bt-hci  ( 2675): BLE HCI(id=62) event = 0x02)
+I/bt-hci  ( 2675): btu_ble_process_adv_pkt
+I/bt-hci  ( 2675): BLE HCI(id=62) event = 0x02)
+I/bt-hci  ( 2675): btu_ble_process_adv_pkt
+I/bt-hci  ( 2675): BLE HCI(id=62) event = 0x02)
+I/bt-hci  ( 2675): btu_ble_process_adv_pkt
+I/bt-hci  ( 2675): BLE HCI(id=62) event = 0x02)
+I/bt-hci  ( 2675): btu_ble_process_adv_pkt
+I/bt-hci  ( 2675): BLE HCI(id=62) event = 0x02)
+I/bt-hci  ( 2675): btu_ble_process_adv_pkt
+D/BLESample( 4901): 3.5秒たったので、scan終了します
+D/BluetoothAdapter( 4901): stopLeScan()
+D/BtGatt.GattService( 2675): stopScan() - queue=1
+D/BtGatt.GattService( 2675): stopScan() - queue empty; stopping scan
+D/BtGatt.btif( 2675): btif_gattc_scan
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1003
+D/BtGatt.GattService( 2675): unregisterClient() - clientIf=5
+D/BtGatt.btif( 2675): btif_gattc_unregister_app
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1001
+D/BtGatt.btif( 2675): btif_gattc_upstreams_evt: Event 1
+W/InputMethodManagerService(  859): Window already focused, ignoring focus gain of: com.android.internal.view.IInputMethodClient$Stub$Proxy@42b2e908 attribute=null, token = android.os.BinderProxy@42fbcdb0
+D/StatusBar.NetworkController( 1158): refreshViews: Data not connected!!
+D/StatusBar.NetworkController( 1158): refreshViews connected={ wifi } level=4 combinedSignalIconId=0x7f0201ad/com.android.systemui:drawable/stat_sys_wifi_signal_4_fully mobileLabel=au wifiLabel="wlan-t"xxxxXXXXxxxxXXXX emergencyOnly=false combinedLabel="wlan-t"xxxxXXXXxxxxXXXX mAirplaneMode=false mDataActivity=0 mPhoneSignalIconId=0x7f0201a0 mQSPhoneSignalIconId=0x7f020076 mDataDirectionIconId=0x0 mDataSignalIconId=0x7f0201a0 mDataTypeIconId=0x0 mQSDataTypeIconId=0x0 mNoSimIconId=0x0 mWifiIconId=0x7f0201ad mQSWifiIconId=0x7f02008f mBluetoothTetherIconId=0x10807a9
+I/ServiceManager(  318): Waiting for service AtCmdFwd...
+I/WifiStateMachine(  859): [signalPoll] newRssi = -52
+I/WifiStateMachine(  859): [signalPoll] newLinkSpeed = 72
+D/StatusBar.NetworkController( 1158): refreshViews: Data not connected!!
+D/StatusBar.NetworkController( 1158): refreshViews connected={ wifi } level=4 combinedSignalIconId=0x7f0201ad/com.android.systemui:drawable/stat_sys_wifi_signal_4_fully mobileLabel=au wifiLabel="wlan-t"xxxxXXXXxxxxXXXX emergencyOnly=false combinedLabel="wlan-t"xxxxXXXXxxxxXXXX mAirplaneMode=false mDataActivity=0 mPhoneSignalIconId=0x7f0201a0 mQSPhoneSignalIconId=0x7f020076 mDataDirectionIconId=0x0 mDataSignalIconId=0x7f0201a0 mDataTypeIconId=0x0 mQSDataTypeIconId=0x0 mNoSimIconId=0x0 mWifiIconId=0x7f0201ad mQSWifiIconId=0x7f02008f mBluetoothTetherIconId=0x10807a9
+I/ServiceManager(  318): Waiting for service AtCmdFwd...
+W/Atfwd_Sendcmd(  318): AtCmdFwd service not published, waiting... retryCnt : 5
+I/ThermalEngine(  251): Sensor:substrate_therm:365000 mC
+I/WifiStateMachine(  859): [signalPoll] newRssi = -55
+I/WifiStateMachine(  859): [signalPoll] newLinkSpeed = 72
+I/MQClient( 1372): unable to connect to [/data/misc/location/mq/location-mq-s]:[No such file or directory]
+W/XTWiFiLP( 1372): connection failure. count 5
+E/Parcel  (  316): Reading a NULL string not supported here.
+E/Parcel  (  316): Reading a NULL string not supported here.
+D/StatusBar.NetworkController( 1158): onSignalStrengthsChanged signalStrength=SignalStrength: 99 0 -120 -160 -120 -1 -1 30 -79 -7 260 2147483647 2147483647 gsm|lte level=4
+D/StatusBar.NetworkController( 1158): refreshViews: Data not connected!!
+D/StatusBar.NetworkController( 1158): refreshViews connected={ wifi } level=4 combinedSignalIconId=0x7f0201ad/com.android.systemui:drawable/stat_sys_wifi_signal_4_fully mobileLabel=au wifiLabel="wlan-t"xxxxXXXXxxxxXXXX emergencyOnly=false combinedLabel="wlan-t"xxxxXXXXxxxxXXXX mAirplaneMode=false mDataActivity=0 mPhoneSignalIconId=0x7f0201a0 mQSPhoneSignalIconId=0x7f020076 mDataDirectionIconId=0x0 mDataSignalIconId=0x7f0201a0 mDataTypeIconId=0x0 mQSDataTypeIconId=0x0 mNoSimIconId=0x0 mWifiIconId=0x7f0201ad mQSWifiIconId=0x7f02008f mBluetoothTetherIconId=0x10807a9
+D/StatusBar.NetworkController( 1158): refreshViews: Data not connected!!
+D/StatusBar.NetworkController( 1158): refreshViews connected={ wifi } level=4 combinedSignalIconId=0x7f0201ad/com.android.systemui:drawable/stat_sys_wifi_signal_4_fully mobileLabel=au wifiLabel="wlan-t"xxxxXXXXxxxxXXXX emergencyOnly=false combinedLabel="wlan-t"xxxxXXXXxxxxXXXX mAirplaneMode=false mDataActivity=0 mPhoneSignalIconId=0x7f0201a0 mQSPhoneSignalIconId=0x7f020076 mDataDirectionIconId=0x0 mDataSignalIconId=0x7f0201a0 mDataTypeIconId=0x0 mQSDataTypeIconId=0x0 mNoSimIconId=0x0 mWifiIconId=0x7f0201ad mQSWifiIconId=0x7f02008f mBluetoothTetherIconId=0x10807a9
+I/WifiStateMachine(  859): [signalPoll] newRssi = -53
+I/WifiStateMachine(  859): [signalPoll] newLinkSpeed = 72
+D/StatusBar.NetworkController( 1158): refreshViews connected={ wifi } level=4 combinedSignalIconId=0x7f0201ad/com.android.systemui:drawable/stat_sys_wifi_signal_4_fully mobileLabel=au wifiLabel="wlan-t"xxxxXXXXxxxxXXXX emergencyOnly=false combinedLabel="wlan-t"xxxxXXXXxxxxXXXX mAirplaneMode=false mDataActivity=0 mPhoneSignalIconId=0x7f0201a0 mQSPhoneSignalIconId=0x7f020076 mDataDirectionIconId=0x0 mDataSignalIconId=0x7f0201a0 mDataTypeIconId=0x0 mQSDataTypeIconId=0x0 mNoSimIconId=0x0 mWifiIconId=0x7f0201ad mQSWifiIconId=0x7f02008f mBluetoothTetherIconId=0x10807a9
+D/StatusBar.NetworkController( 1158): refreshViews: Data not connected!!
+I/ThermalEngine(  251): Sensor:pa_therm0:350000 mC
+I/ThermalEngine(  251): Sensor:substrate_therm:365000 mC
+V/BLESample( 4901): onClick readClicked
+I/dalvikvm( 4901): Could not find method android.bluetooth.BluetoothGattCallback.onMtuChanged, referenced from method com.example.bt_sample.MyBluetoothGattCallback.onMtuChanged
+W/dalvikvm( 4901): VFY: unable to resolve virtual method 197: Landroid/bluetooth/BluetoothGattCallback;.onMtuChanged (Landroid/bluetooth/BluetoothGatt;II)V
+D/dalvikvm( 4901): VFY: replacing opcode 0x6f at 0x0000
+D/BluetoothGatt( 4901): connect() - device: 5A:B7:2A:02:7B:B3, auto: false
+D/BluetoothGatt( 4901): registerApp()
+D/BluetoothGatt( 4901): registerApp() - UUID=1f266bec-de31-4b30-9c84-4bda072e9d36
+D/BtGatt.GattService( 2675): registerClient() - UUID=1f266bec-de31-4b30-9c84-4bda072e9d36
+D/BtGatt.btif( 2675): btif_gattc_register_app
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1000
+D/BtGatt.btif( 2675): btif_gattc_upstreams_evt: Event 0
+D/BtGatt.GattService( 2675): onClientRegistered() - UUID=1f266bec-de31-4b30-9c84-4bda072e9d36, clientIf=5
+D/BluetoothGatt( 4901): onClientRegistered() - status=0 clientIf=5
+D/BtGatt.GattService( 2675): clientConnect() - address=5A:B7:2A:02:7B:B3, isDirect=true
+D/BtGatt.btif( 2675): btif_gattc_open
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1004
+I/bt-hci  ( 2675): BLE HCI(id=62) event = 0x01)
+W/bt-btif ( 2675): info:x0
+D/        ( 2675): remote version info [5a:b7:2a:02:7b:b3]: 0, 0, 0
+E/BluetoothRemoteDevices( 2675): aclStateChangeCallback: Device is NULL
+D/BtGatt.btif( 2675): btif_gattc_upstreams_evt: Event 2
+D/BtGatt.GattService( 2675): onConnected() - clientIf=5, connId=5, address=5A:B7:2A:02:7B:B3
+D/BluetoothGatt( 4901): onClientConnectionState() - status=0 clientIf=5 device=5A:B7:2A:02:7B:B3
+D/BLESample( 4901): START ---> onConnectionStateChange : GATT_SUCCESS  newState(2:connected, 0:disconn) : 2
+D/BluetoothGatt( 4901): discoverServices() - device: 5A:B7:2A:02:7B:B3
+D/BtGatt.GattService( 2675): discoverServices() - address=5A:B7:2A:02:7B:B3, connId=5
+D/BtGatt.btif( 2675): btif_gattc_search_service
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1006
+I/MQClient( 1372): unable to connect to [/data/misc/location/mq/location-mq-s]:[No such file or directory]
+W/XTWiFiLP( 1372): connection failure. count 6
+D/StatusBar.NetworkController( 1158): refreshViews: Data not connected!!
+D/StatusBar.NetworkController( 1158): refreshViews connected={ wifi } level=4 combinedSignalIconId=0x7f0201ad/com.android.systemui:drawable/stat_sys_wifi_signal_4_fully mobileLabel=au wifiLabel="wlan-t"xxxxXXXXxxxxXXXX emergencyOnly=false combinedLabel="wlan-t"xxxxXXXXxxxxXXXX mAirplaneMode=false mDataActivity=0 mPhoneSignalIconId=0x7f0201a0 mQSPhoneSignalIconId=0x7f020076 mDataDirectionIconId=0x0 mDataSignalIconId=0x7f0201a0 mDataTypeIconId=0x0 mQSDataTypeIconId=0x0 mNoSimIconId=0x0 mWifiIconId=0x7f0201ad mQSWifiIconId=0x7f02008f mBluetoothTetherIconId=0x10807a9
+I/WifiStateMachine(  859): [signalPoll] newRssi = -52
+I/WifiStateMachine(  859): [signalPoll] newLinkSpeed = 72
+D/btif_config_util( 2675): btif_config_save_file(L188): in file name:/data/misc/bluedroid/bt_config.new
+I/WifiStateMachine(  859): [signalPoll] newRssi = -52
+I/WifiStateMachine(  859): [signalPoll] newLinkSpeed = 72
+I/ThermalEngine(  251): Sensor:substrate_therm:365000 mC
+E/bt-btif ( 2675): char not added, no resources
+E/bt-btif ( 2675): char not added, no resources
+E/bt-btif ( 2675): char not added, no resources
+E/bt-btif ( 2675): char not added, no resources
+E/bt-btif ( 2675): char not added, no resources
+E/bt-btif ( 2675): char not added, no resources
+I/MQClient( 1372): unable to connect to [/data/misc/location/mq/location-mq-s]:[No such file or directory]
+W/XTWiFiLP( 1372): connection failure. count 7
+E/bt-btif ( 2675): char not added, no resources
+E/bt-btif ( 2675): char not added, no resources
+E/bt-btif ( 2675): char not added, no resources
+E/bt-btif ( 2675): char not added, no resources
+E/bt-btif ( 2675): char not added, no resources
+E/bt-btif ( 2675): char not added, no resources
+E/bt-btif ( 2675): char not added, no resources
+E/bt-btif ( 2675): char not added, no resources
+E/bt-btif ( 2675): char not added, no resources
+I/WifiStateMachine(  859): [signalPoll] newRssi = -52
+I/WifiStateMachine(  859): [signalPoll] newLinkSpeed = 72
+I/ThermalEngine(  251): Sensor:pa_therm0:350000 mC
+I/ThermalEngine(  251): Sensor:substrate_therm:366000 mC
+E/bt-btif ( 2675): No More Service found
+D/BtGatt.btif( 2675): btif_gattc_upstreams_evt: Event 7
+D/BtGatt.GattService( 2675): onSearchResult() - address=5A:B7:2A:02:7B:B3, uuid=00001801-0000-1000-8000-00805f9b34fb
+D/BluetoothGatt( 4901): onGetService() - Device=5A:B7:2A:02:7B:B3 UUID=00001801-0000-1000-8000-00805f9b34fb
+D/BtGatt.btif( 2675): btif_gattc_upstreams_evt: Event 7
+D/BtGatt.GattService( 2675): onSearchResult() - address=5A:B7:2A:02:7B:B3, uuid=00001800-0000-1000-8000-00805f9b34fb
+D/BluetoothGatt( 4901): onGetService() - Device=5A:B7:2A:02:7B:B3 UUID=00001800-0000-1000-8000-00805f9b34fb
+D/BtGatt.btif( 2675): btif_gattc_upstreams_evt: Event 7
+D/BtGatt.GattService( 2675): onSearchResult() - address=5A:B7:2A:02:7B:B3, uuid=99999999-1111-4444-4444-111111111111
+D/BluetoothGatt( 4901): onGetService() - Device=5A:B7:2A:02:7B:B3 UUID=99999999-1111-4444-4444-111111111111
+D/BtGatt.btif( 2675): btif_gattc_upstreams_evt: Event 6
+D/BtGatt.GattService( 2675): onSearchCompleted() - connId=5, status=0
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1007
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=00002a05-0000-1000-8000-00805f9b34fb, prop=32
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=00002a05-0000-1000-8000-00805f9b34fb
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=133, charUuid=00002a05-0000-1000-8000-00805f9b34fb, prop=32
+D/BtGatt.btif( 2675): btif_gattc_get_included_service
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1011
+D/BtGatt.GattService( 2675): onGetIncludedService() - address=5A:B7:2A:02:7B:B3, status=133, uuid=00001801-0000-1000-8000-00805f9b34fb, inclUuid=00002a05-0000-1000-8000-00805f9b34fb
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1007
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=00002a00-0000-1000-8000-00805f9b34fb, prop=2
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=00002a00-0000-1000-8000-00805f9b34fb
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=00002a01-0000-1000-8000-00805f9b34fb, prop=2
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=00002a01-0000-1000-8000-00805f9b34fb
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=133, charUuid=00002a01-0000-1000-8000-00805f9b34fb, prop=2
+D/BtGatt.btif( 2675): btif_gattc_get_included_service
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1011
+D/BtGatt.GattService( 2675): onGetIncludedService() - address=5A:B7:2A:02:7B:B3, status=133, uuid=00001800-0000-1000-8000-00805f9b34fb, inclUuid=00002a01-0000-1000-8000-00805f9b34fb
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1007
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=99999999-2222-4444-4444-222222222222, prop=2
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=99999999-2222-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=99999999-3333-4444-4444-222222222222, prop=8
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=99999999-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=aaaa0001-3333-4444-4444-222222222222, prop=10
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0001-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=aaaa0002-3333-4444-4444-222222222222, prop=10
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0002-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=aaaa0003-3333-4444-4444-222222222222, prop=10
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0003-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=aaaa0004-3333-4444-4444-222222222222, prop=10
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0004-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=aaaa0005-3333-4444-4444-222222222222, prop=10
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0005-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=aaaa0006-3333-4444-4444-222222222222, prop=10
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0006-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=aaaa0007-3333-4444-4444-222222222222, prop=10
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0007-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=aaaa0008-3333-4444-4444-222222222222, prop=10
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0008-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=aaaa0009-3333-4444-4444-222222222222, prop=10
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0009-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=aaaa0010-3333-4444-4444-222222222222, prop=10
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0010-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=aaaa0011-3333-4444-4444-222222222222, prop=10
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0011-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=aaaa0012-3333-4444-4444-222222222222, prop=10
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0012-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=aaaa0013-3333-4444-4444-222222222222, prop=10
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0013-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=aaaa0014-3333-4444-4444-222222222222, prop=10
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0014-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=aaaa0015-3333-4444-4444-222222222222, prop=10
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0015-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=aaaa0016-3333-4444-4444-222222222222, prop=10
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0016-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=aaaa0017-3333-4444-4444-222222222222, prop=10
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0017-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=aaaa0018-3333-4444-4444-222222222222, prop=10
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0018-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=aaaa0019-3333-4444-4444-222222222222, prop=10
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0019-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=aaaa0020-3333-4444-4444-222222222222, prop=2
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0020-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=aaaa0021-3333-4444-4444-222222222222, prop=10
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0021-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=aaaa0022-3333-4444-4444-222222222222, prop=10
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0022-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=aaaa0023-3333-4444-4444-222222222222, prop=10
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0023-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=aaaa0024-3333-4444-4444-222222222222, prop=10
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0024-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=aaaa0025-3333-4444-4444-222222222222, prop=10
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0025-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=aaaa0026-3333-4444-4444-222222222222, prop=10
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0026-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=aaaa0027-3333-4444-4444-222222222222, prop=10
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0027-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=aaaa0028-3333-4444-4444-222222222222, prop=10
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0028-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=aaaa0029-3333-4444-4444-222222222222, prop=10
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0029-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=aaaa0030-3333-4444-4444-222222222222, prop=10
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0030-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=aaaa0031-3333-4444-4444-222222222222, prop=10
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0031-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=aaaa0032-3333-4444-4444-222222222222, prop=10
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0032-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=aaaa0033-3333-4444-4444-222222222222, prop=10
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0033-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=aaaa0034-3333-4444-4444-222222222222, prop=10
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0034-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=0, charUuid=aaaa0035-3333-4444-4444-222222222222, prop=10
+D/BluetoothGatt( 4901): onGetCharacteristic() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0035-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_characteristic
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1008
+D/BtGatt.GattService( 2675): onGetCharacteristic() - address=5A:B7:2A:02:7B:B3, status=133, charUuid=aaaa0035-3333-4444-4444-222222222222, prop=10
+D/BtGatt.btif( 2675): btif_gattc_get_included_service
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1011
+D/BtGatt.GattService( 2675): onGetIncludedService() - address=5A:B7:2A:02:7B:B3, status=133, uuid=99999999-1111-4444-4444-111111111111, inclUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1009
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=0, descUuid=00002803-0000-1000-8000-00805f9b34fb
+D/BluetoothGatt( 4901): onGetDescriptor() - Device=5A:B7:2A:02:7B:B3 UUID=00002803-0000-1000-8000-00805f9b34fb
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1010
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=0, descUuid=aaaa0036-3333-4444-4444-222222222222
+D/BluetoothGatt( 4901): onGetDescriptor() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0036-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1010
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=0, descUuid=00002803-0000-1000-8000-00805f9b34fb
+D/BluetoothGatt( 4901): onGetDescriptor() - Device=5A:B7:2A:02:7B:B3 UUID=00002803-0000-1000-8000-00805f9b34fb
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1010
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=0, descUuid=aaaa0037-3333-4444-4444-222222222222
+D/BluetoothGatt( 4901): onGetDescriptor() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0037-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1010
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=0, descUuid=00002803-0000-1000-8000-00805f9b34fb
+D/BluetoothGatt( 4901): onGetDescriptor() - Device=5A:B7:2A:02:7B:B3 UUID=00002803-0000-1000-8000-00805f9b34fb
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1010
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=0, descUuid=aaaa0038-3333-4444-4444-222222222222
+D/BluetoothGatt( 4901): onGetDescriptor() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0038-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1010
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=0, descUuid=00002803-0000-1000-8000-00805f9b34fb
+D/BluetoothGatt( 4901): onGetDescriptor() - Device=5A:B7:2A:02:7B:B3 UUID=00002803-0000-1000-8000-00805f9b34fb
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1010
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=0, descUuid=aaaa0039-3333-4444-4444-222222222222
+D/BluetoothGatt( 4901): onGetDescriptor() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0039-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1010
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=0, descUuid=00002803-0000-1000-8000-00805f9b34fb
+D/BluetoothGatt( 4901): onGetDescriptor() - Device=5A:B7:2A:02:7B:B3 UUID=00002803-0000-1000-8000-00805f9b34fb
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1010
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=0, descUuid=aaaa0040-3333-4444-4444-222222222222
+D/BluetoothGatt( 4901): onGetDescriptor() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0040-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1010
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=0, descUuid=00002803-0000-1000-8000-00805f9b34fb
+D/BluetoothGatt( 4901): onGetDescriptor() - Device=5A:B7:2A:02:7B:B3 UUID=00002803-0000-1000-8000-00805f9b34fb
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1010
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=0, descUuid=aaaa0041-3333-4444-4444-222222222222
+D/BluetoothGatt( 4901): onGetDescriptor() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0041-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1010
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=0, descUuid=00002803-0000-1000-8000-00805f9b34fb
+D/BluetoothGatt( 4901): onGetDescriptor() - Device=5A:B7:2A:02:7B:B3 UUID=00002803-0000-1000-8000-00805f9b34fb
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1010
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=0, descUuid=aaaa0042-3333-4444-4444-222222222222
+D/BluetoothGatt( 4901): onGetDescriptor() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0042-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1010
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=0, descUuid=00002803-0000-1000-8000-00805f9b34fb
+D/BluetoothGatt( 4901): onGetDescriptor() - Device=5A:B7:2A:02:7B:B3 UUID=00002803-0000-1000-8000-00805f9b34fb
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1010
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=0, descUuid=aaaa0043-3333-4444-4444-222222222222
+D/BluetoothGatt( 4901): onGetDescriptor() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0043-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1010
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=0, descUuid=00002803-0000-1000-8000-00805f9b34fb
+D/BluetoothGatt( 4901): onGetDescriptor() - Device=5A:B7:2A:02:7B:B3 UUID=00002803-0000-1000-8000-00805f9b34fb
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1010
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=0, descUuid=aaaa0044-3333-4444-4444-222222222222
+D/BluetoothGatt( 4901): onGetDescriptor() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0044-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1010
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=0, descUuid=00002803-0000-1000-8000-00805f9b34fb
+D/BluetoothGatt( 4901): onGetDescriptor() - Device=5A:B7:2A:02:7B:B3 UUID=00002803-0000-1000-8000-00805f9b34fb
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1010
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=0, descUuid=aaaa0045-3333-4444-4444-222222222222
+D/BluetoothGatt( 4901): onGetDescriptor() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0045-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1010
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=0, descUuid=00002803-0000-1000-8000-00805f9b34fb
+D/BluetoothGatt( 4901): onGetDescriptor() - Device=5A:B7:2A:02:7B:B3 UUID=00002803-0000-1000-8000-00805f9b34fb
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1010
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=0, descUuid=aaaa0046-3333-4444-4444-222222222222
+D/BluetoothGatt( 4901): onGetDescriptor() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0046-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1010
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=0, descUuid=00002803-0000-1000-8000-00805f9b34fb
+D/BluetoothGatt( 4901): onGetDescriptor() - Device=5A:B7:2A:02:7B:B3 UUID=00002803-0000-1000-8000-00805f9b34fb
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1010
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=0, descUuid=aaaa0047-3333-4444-4444-222222222222
+D/BluetoothGatt( 4901): onGetDescriptor() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0047-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1010
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=0, descUuid=00002803-0000-1000-8000-00805f9b34fb
+D/BluetoothGatt( 4901): onGetDescriptor() - Device=5A:B7:2A:02:7B:B3 UUID=00002803-0000-1000-8000-00805f9b34fb
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1010
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=0, descUuid=aaaa0048-3333-4444-4444-222222222222
+D/BluetoothGatt( 4901): onGetDescriptor() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0048-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1010
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=0, descUuid=00002803-0000-1000-8000-00805f9b34fb
+D/BluetoothGatt( 4901): onGetDescriptor() - Device=5A:B7:2A:02:7B:B3 UUID=00002803-0000-1000-8000-00805f9b34fb
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1010
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=0, descUuid=aaaa0049-3333-4444-4444-222222222222
+D/BluetoothGatt( 4901): onGetDescriptor() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0049-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1010
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=0, descUuid=00002803-0000-1000-8000-00805f9b34fb
+D/BluetoothGatt( 4901): onGetDescriptor() - Device=5A:B7:2A:02:7B:B3 UUID=00002803-0000-1000-8000-00805f9b34fb
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1010
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=0, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BluetoothGatt( 4901): onGetDescriptor() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.btif( 2675): btif_gattc_get_descriptor
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1010
+D/BtGatt.GattService( 2675): onGetDescriptor() - address=5A:B7:2A:02:7B:B3, status=133, descUuid=aaaa0050-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): continueSearch() - connid=5, status=0
+D/BtGatt.GattService( 2675): Queue is completely empty
+D/BtGatt.GattService( 2675): continueSearch():Queue is empty for connid=5
+D/BtGatt.GattService( 2675): continueSearch(): calling searchcomplete in frameworks
+D/BluetoothGatt( 4901): onSearchComplete() = Device=5A:B7:2A:02:7B:B3 Status=0
+D/BLESample( 4901): service UUID : 00001801-0000-1000-8000-00805f9b34fb
+D/BLESample( 4901): service UUID : 00001800-0000-1000-8000-00805f9b34fb
+D/BLESample( 4901): service UUID : 99999999-1111-4444-4444-111111111111
+D/BLESample( 4901): START ---> onServicesDiscovered() status : GATT_SUCCESS
+D/BLESample( 4901):  ----- > SERVICE_FOUND
+D/BLESample( 4901):  ----- > CHAR_NAME_STRING FOUND
+D/BluetoothGatt( 4901): readCharacteristic() - uuid: aaaa0020-3333-4444-4444-222222222222
+D/BtGatt.GattService( 2675): readCharacteristic() - address=5A:B7:2A:02:7B:B3
+D/BtGatt.btif( 2675): btif_gattc_read_char
+D/BLESample( 4901):  Read request operation was initiated successfully. Please wait callback.
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1013
+I/WifiStateMachine(  859): [signalPoll] newRssi = -51
+I/WifiStateMachine(  859): [signalPoll] newLinkSpeed = 72
+I/MQClient( 1372): unable to connect to [/data/misc/location/mq/location-mq-s]:[No such file or directory]
+W/XTWiFiLP( 1372): connection failure. count 8
+I/WifiStateMachine(  859): [signalPoll] newRssi = -51
+I/WifiStateMachine(  859): [signalPoll] newLinkSpeed = 72
+D/StatusBar.NetworkController( 1158): refreshViews: Data not connected!!
+D/StatusBar.NetworkController( 1158): refreshViews connected={ wifi } level=4 combinedSignalIconId=0x7f0201ad/com.android.systemui:drawable/stat_sys_wifi_signal_4_fully mobileLabel=au wifiLabel="wlan-t"xxxxXXXXxxxxXXXX emergencyOnly=false combinedLabel="wlan-t"xxxxXXXXxxxxXXXX mAirplaneMode=false mDataActivity=0 mPhoneSignalIconId=0x7f0201a0 mQSPhoneSignalIconId=0x7f020076 mDataDirectionIconId=0x0 mDataSignalIconId=0x7f0201a0 mDataTypeIconId=0x0 mQSDataTypeIconId=0x0 mNoSimIconId=0x0 mWifiIconId=0x7f0201ad mQSWifiIconId=0x7f02008f mBluetoothTetherIconId=0x10807a9
+D/StatusBar.NetworkController( 1158): refreshViews: Data not connected!!
+D/StatusBar.NetworkController( 1158): refreshViews connected={ wifi } level=4 combinedSignalIconId=0x7f0201ad/com.android.systemui:drawable/stat_sys_wifi_signal_4_fully mobileLabel=au wifiLabel="wlan-t"xxxxXXXXxxxxXXXX emergencyOnly=false combinedLabel="wlan-t"xxxxXXXXxxxxXXXX mAirplaneMode=false mDataActivity=0 mPhoneSignalIconId=0x7f0201a0 mQSPhoneSignalIconId=0x7f020076 mDataDirectionIconId=0x0 mDataSignalIconId=0x7f0201a0 mDataTypeIconId=0x0 mQSDataTypeIconId=0x0 mNoSimIconId=0x0 mWifiIconId=0x7f0201ad mQSWifiIconId=0x7f02008f mBluetoothTetherIconId=0x10807a9
+I/ThermalEngine(  251): Sensor:substrate_therm:366000 mC
+I/MQClient( 1372): unable to connect to [/data/misc/location/mq/location-mq-s]:[No such file or directory]
+W/XTWiFiLP( 1372): connection failure. count 9
+D/StatusBar.NetworkController( 1158): refreshViews: Data not connected!!
+D/StatusBar.NetworkController( 1158): refreshViews connected={ wifi } level=4 combinedSignalIconId=0x7f0201ad/com.android.systemui:drawable/stat_sys_wifi_signal_4_fully mobileLabel=au wifiLabel="wlan-t"xxxxXXXXxxxxXXXX emergencyOnly=false combinedLabel="wlan-t"xxxxXXXXxxxxXXXX mAirplaneMode=false mDataActivity=0 mPhoneSignalIconId=0x7f0201a0 mQSPhoneSignalIconId=0x7f020076 mDataDirectionIconId=0x0 mDataSignalIconId=0x7f0201a0 mDataTypeIconId=0x0 mQSDataTypeIconId=0x0 mNoSimIconId=0x0 mWifiIconId=0x7f0201ad mQSWifiIconId=0x7f02008f mBluetoothTetherIconId=0x10807a9
+I/WifiStateMachine(  859): [signalPoll] newRssi = -51
+I/WifiStateMachine(  859): [signalPoll] newLinkSpeed = 72
+D/StatusBar.NetworkController( 1158): refreshViews: Data not connected!!
+D/StatusBar.NetworkController( 1158): refreshViews connected={ wifi } level=4 combinedSignalIconId=0x7f0201ad/com.android.systemui:drawable/stat_sys_wifi_signal_4_fully mobileLabel=au wifiLabel="wlan-t"xxxxXXXXxxxxXXXX emergencyOnly=false combinedLabel="wlan-t"xxxxXXXXxxxxXXXX mAirplaneMode=false mDataActivity=0 mPhoneSignalIconId=0x7f0201a0 mQSPhoneSignalIconId=0x7f020076 mDataDirectionIconId=0x0 mDataSignalIconId=0x7f0201a0 mDataTypeIconId=0x0 mQSDataTypeIconId=0x0 mNoSimIconId=0x0 mWifiIconId=0x7f0201ad mQSWifiIconId=0x7f02008f mBluetoothTetherIconId=0x10807a9
+I/Atfwd_Sendcmd(  318): AtCmdFwd service not ready - Exhausted retry attempts - :6
+I/Atfwd_Daemon(  318): result : -1 	 ,Init step :2 	 ,qmiErrorCode: 0
+I/WifiStateMachine(  859): [signalPoll] newRssi = -51
+I/WifiStateMachine(  859): [signalPoll] newLinkSpeed = 72
+I/ThermalEngine(  251): Sensor:pa_therm0:350000 mC
+I/ThermalEngine(  251): Sensor:substrate_therm:367000 mC
+D/StatusBar.NetworkController( 1158): refreshViews: Data not connected!!
+D/StatusBar.NetworkController( 1158): refreshViews connected={ wifi } level=4 combinedSignalIconId=0x7f0201ad/com.android.systemui:drawable/stat_sys_wifi_signal_4_fully mobileLabel=au wifiLabel="wlan-t"xxxxXXXXxxxxXXXX emergencyOnly=false combinedLabel="wlan-t"xxxxXXXXxxxxXXXX mAirplaneMode=false mDataActivity=0 mPhoneSignalIconId=0x7f0201a0 mQSPhoneSignalIconId=0x7f020076 mDataDirectionIconId=0x0 mDataSignalIconId=0x7f0201a0 mDataTypeIconId=0x0 mQSDataTypeIconId=0x0 mNoSimIconId=0x0 mWifiIconId=0x7f0201ad mQSWifiIconId=0x7f02008f mBluetoothTetherIconId=0x10807a9
+I/MQClient( 1372): unable to connect to [/data/misc/location/mq/location-mq-s]:[No such file or directory]
+W/XTWiFiLP( 1372): connection failure. count 10
+D/StatusBar.NetworkController( 1158): refreshViews: Data not connected!!
+D/StatusBar.NetworkController( 1158): refreshViews connected={ wifi } level=4 combinedSignalIconId=0x7f0201ad/com.android.systemui:drawable/stat_sys_wifi_signal_4_fully mobileLabel=au wifiLabel="wlan-t"xxxxXXXXxxxxXXXX emergencyOnly=false combinedLabel="wlan-t"xxxxXXXXxxxxXXXX mAirplaneMode=false mDataActivity=0 mPhoneSignalIconId=0x7f0201a0 mQSPhoneSignalIconId=0x7f020076 mDataDirectionIconId=0x0 mDataSignalIconId=0x7f0201a0 mDataTypeIconId=0x0 mQSDataTypeIconId=0x0 mNoSimIconId=0x0 mWifiIconId=0x7f0201ad mQSWifiIconId=0x7f02008f mBluetoothTetherIconId=0x10807a9
+I/WifiStateMachine(  859): [signalPoll] newRssi = -52
+I/WifiStateMachine(  859): [signalPoll] newLinkSpeed = 72
+D/StatusBar.NetworkController( 1158): onSignalStrengthsChanged signalStrength=SignalStrength: 99 0 -120 -160 -120 -1 -1 31 -78 -7 284 2147483647 2147483647 gsm|lte level=4
+D/StatusBar.NetworkController( 1158): refreshViews: Data not connected!!
+D/StatusBar.NetworkController( 1158): refreshViews connected={ wifi } level=4 combinedSignalIconId=0x7f0201ad/com.android.systemui:drawable/stat_sys_wifi_signal_4_fully mobileLabel=au wifiLabel="wlan-t"xxxxXXXXxxxxXXXX emergencyOnly=false combinedLabel="wlan-t"xxxxXXXXxxxxXXXX mAirplaneMode=false mDataActivity=0 mPhoneSignalIconId=0x7f0201a0 mQSPhoneSignalIconId=0x7f020076 mDataDirectionIconId=0x0 mDataSignalIconId=0x7f0201a0 mDataTypeIconId=0x0 mQSDataTypeIconId=0x0 mNoSimIconId=0x0 mWifiIconId=0x7f0201ad mQSWifiIconId=0x7f02008f mBluetoothTetherIconId=0x10807a9
+E/Parcel  (  316): Reading a NULL string not supported here.
+E/Parcel  (  316): Reading a NULL string not supported here.
+I/ThermalEngine(  251): Sensor:substrate_therm:367000 mC
+I/WifiStateMachine(  859): [signalPoll] newRssi = -51
+I/WifiStateMachine(  859): [signalPoll] newLinkSpeed = 72
+I/MQClient( 1372): unable to connect to [/data/misc/location/mq/location-mq-s]:[No such file or directory]
+W/XTWiFiLP( 1372): connection failure. count 11
+D/StatusBar.NetworkController( 1158): onSignalStrengthsChanged signalStrength=SignalStrength: 99 0 -120 -160 -120 -1 -1 31 -79 -7 250 2147483647 2147483647 gsm|lte level=4
+D/StatusBar.NetworkController( 1158): refreshViews: Data not connected!!
+D/StatusBar.NetworkController( 1158): refreshViews connected={ wifi } level=4 combinedSignalIconId=0x7f0201ad/com.android.systemui:drawable/stat_sys_wifi_signal_4_fully mobileLabel=au wifiLabel="wlan-t"xxxxXXXXxxxxXXXX emergencyOnly=false combinedLabel="wlan-t"xxxxXXXXxxxxXXXX mAirplaneMode=false mDataActivity=0 mPhoneSignalIconId=0x7f0201a0 mQSPhoneSignalIconId=0x7f020076 mDataDirectionIconId=0x0 mDataSignalIconId=0x7f0201a0 mDataTypeIconId=0x0 mQSDataTypeIconId=0x0 mNoSimIconId=0x0 mWifiIconId=0x7f0201ad mQSWifiIconId=0x7f02008f mBluetoothTetherIconId=0x10807a9
+E/Parcel  (  316): Reading a NULL string not supported here.
+E/Parcel  (  316): Reading a NULL string not supported here.
+I/WifiStateMachine(  859): [signalPoll] newRssi = -51
+I/WifiStateMachine(  859): [signalPoll] newLinkSpeed = 72
+D/dalvikvm(  859): GC_EXPLICIT freed 3610K, 45% free 17791K/32032K, paused 4ms+11ms, total 121ms
+I/ServiceManager(  318): Waiting for service AtCmdFwd...
+D/dalvikvm( 8588): GC_EXPLICIT freed 741K, 84% free 3408K/20600K, paused 2ms+4ms, total 39ms
+D/dalvikvm( 2700): GC_EXPLICIT freed 577K, 77% free 4886K/20600K, paused 2ms+5ms, total 38ms
+D/dalvikvm(  859): GC_EXPLICIT freed 167K, 45% free 17720K/32032K, paused 7ms+8ms, total 135ms
+D/dalvikvm( 8588): GC_EXPLICIT freed 448K, 84% free 3432K/20600K, paused 1ms+4ms, total 26ms
+I/ThermalEngine(  251): Sensor:pa_therm0:350000 mC
+I/ThermalEngine(  251): Sensor:substrate_therm:367000 mC
+I/ServiceManager(  318): Waiting for service AtCmdFwd...
+D/dalvikvm( 2700): GC_EXPLICIT freed 406K, 77% free 4864K/20600K, paused 3ms+11ms, total 67ms
+D/dalvikvm( 8588): GC_EXPLICIT freed 469K, 84% free 3428K/20600K, paused 2ms+8ms, total 39ms
+I/MQClient( 1372): unable to connect to [/data/misc/location/mq/location-mq-s]:[No such file or directory]
+W/XTWiFiLP( 1372): connection failure. count 12
+I/ServiceManager(  318): Waiting for service AtCmdFwd...
+I/WifiStateMachine(  859): [signalPoll] newRssi = -50
+I/WifiStateMachine(  859): [signalPoll] newLinkSpeed = 72
+D/dalvikvm(  859): GC_EXPLICIT freed 107K, 45% free 17720K/32032K, paused 3ms+9ms, total 114ms
+I/ServiceManager(  318): Waiting for service AtCmdFwd...
+I/ServiceManager(  318): Waiting for service AtCmdFwd...
+W/Atfwd_Sendcmd(  318): AtCmdFwd service not published, waiting... retryCnt : 1
+I/ThermalEngine(  251): Sensor:substrate_therm:369000 mC
+I/WifiStateMachine(  859): [signalPoll] newRssi = -50
+I/WifiStateMachine(  859): [signalPoll] newLinkSpeed = 72
+E/XTWiFiLP( 1372): cannot send POSITION request message to XTWiFi-PE
+W/XTWiFiLP( 1372): IPC receiver thread ended, remove local client
+I/MQClient( 1372): unable to connect to [/data/misc/location/mq/location-mq-s]:[No such file or directory]
+W/XTWiFiLP( 1372): connection failure. count 1
+D/dalvikvm( 4400): GC_CONCURRENT freed 3289K, 83% free 3534K/20600K, paused 3ms+3ms, total 31ms
+E/LocSvc_flp(  859): I/===> int flp_inject_location(FlpLocation*) line 194 
+E/LocSvc_api_v02(  859): I/---> locClientSendReq line 2333 QMI_LOC_INJECT_POSITION_REQ_V02
+E/LocSvc_ApiV02(  859): I/<--- void globalRespCb(locClientHandleType, uint32_t, locClientRespIndUnionType, void*) line 106 QMI_LOC_INJECT_POSITION_REQ_V02
+I/GCoreUlr( 1310): Successfully inserted location
+I/GCoreUlr( 1310): Not calling LocationReporter, hasMoved: false, elapsed millis: 152690, request: Stationary(3600000)
+D/StatusBar.NetworkController( 1158): refreshViews: Data not connected!!
+D/StatusBar.NetworkController( 1158): refreshViews connected={ wifi } level=4 combinedSignalIconId=0x7f0201ad/com.android.systemui:drawable/stat_sys_wifi_signal_4_fully mobileLabel=au wifiLabel="wlan-t"xxxxXXXXxxxxXXXX emergencyOnly=false combinedLabel="wlan-t"xxxxXXXXxxxxXXXX mAirplaneMode=false mDataActivity=0 mPhoneSignalIconId=0x7f0201a0 mQSPhoneSignalIconId=0x7f020076 mDataDirectionIconId=0x0 mDataSignalIconId=0x7f0201a0 mDataTypeIconId=0x0 mQSDataTypeIconId=0x0 mNoSimIconId=0x0 mWifiIconId=0x7f0201ad mQSWifiIconId=0x7f02008f mBluetoothTetherIconId=0x10807a9
+I/WifiStateMachine(  859): [signalPoll] newRssi = -50
+I/WifiStateMachine(  859): [signalPoll] newLinkSpeed = 72
+I/ServiceManager(  318): Waiting for service AtCmdFwd...
+I/ThermalEngine(  251): Sensor:pa_therm0:350000 mC
+I/ThermalEngine(  251): Sensor:substrate_therm:369000 mC
+I/ServiceManager(  318): Waiting for service AtCmdFwd...
+D/StatusBar.NetworkController( 1158): refreshViews: Data not connected!!
+D/StatusBar.NetworkController( 1158): refreshViews connected={ wifi } level=4 combinedSignalIconId=0x7f0201ad/com.android.systemui:drawable/stat_sys_wifi_signal_4_fully mobileLabel=au wifiLabel="wlan-t"xxxxXXXXxxxxXXXX emergencyOnly=false combinedLabel="wlan-t"xxxxXXXXxxxxXXXX mAirplaneMode=false mDataActivity=0 mPhoneSignalIconId=0x7f0201a0 mQSPhoneSignalIconId=0x7f020076 mDataDirectionIconId=0x0 mDataSignalIconId=0x7f0201a0 mDataTypeIconId=0x0 mQSDataTypeIconId=0x0 mNoSimIconId=0x0 mWifiIconId=0x7f0201ad mQSWifiIconId=0x7f02008f mBluetoothTetherIconId=0x10807a9
+W/bt-att  ( 2675): gatt_rsp_timeout disconnecting...
+E/bt-btm  ( 2675): btm_sec_disconnected - Clearing Pending flag
+W/bt-btif ( 2675): btapp_gattc_req_data :Src read.p_value ptr is NULL for event  0x3
+W/bt-btif ( 2675): bta_dm_act no entry for connected service cbs
+D/BtGatt.btif( 2675): btif_gattc_upstreams_evt: Event 3
+D/BtGatt.GattService( 2675): onReadCharacteristic() - address=5A:B7:2A:02:7B:B3, status=133, length=1
+D/BluetoothGatt( 4901): onCharacteristicRead() - Device=5A:B7:2A:02:7B:B3 UUID=aaaa0020-3333-4444-4444-222222222222 Status=133
+W/BluetoothGatt( 4901): Unhandled exception in callback
+W/BluetoothGatt( 4901): java.lang.NullPointerException
+W/BluetoothGatt( 4901): 	at android.bluetooth.BluetoothGattCharacteristic.getStringValue(BluetoothGattCharacteristic.java:506)
+W/BluetoothGatt( 4901): 	at com.example.bt_sample.MyBluetoothGattCallback.onCharacteristicRead(MyBluetoothGattCallback.java:36)
+W/BluetoothGatt( 4901): 	at android.bluetooth.BluetoothGatt$1.onCharacteristicRead(BluetoothGatt.java:342)
+W/BluetoothGatt( 4901): 	at android.bluetooth.IBluetoothGattCallback$Stub.onTransact(IBluetoothGattCallback.java:248)
+W/BluetoothGatt( 4901): 	at android.os.Binder.execTransact(Binder.java:404)
+W/BluetoothGatt( 4901): 	at dalvik.system.NativeStart.run(Native Method)
+D/BtGatt.btif( 2675): btif_gattc_upstreams_evt: Event 5
+D/BtGatt.GattService( 2675): onDisconnected() - clientIf=5, connId=5, address=5A:B7:2A:02:7B:B3
+D/BluetoothGatt( 4901): onClientConnectionState() - status=0 clientIf=5 device=5A:B7:2A:02:7B:B3
+D/BLESample( 4901): START ---> onConnectionStateChange : GATT_SUCCESS  newState(2:connected, 0:disconn) : 0
+D/BluetoothGatt( 4901): close()
+D/BluetoothGatt( 4901): unregisterApp() - mClientIf=5
+D/BtGatt.GattService( 2675): unregisterClient() - clientIf=5
+D/BtGatt.btif( 2675): btif_gattc_unregister_app
+E/BluetoothRemoteDevices( 2675): aclStateChangeCallback: Device is NULL
+D/BtGatt.btif( 2675): btgattc_handle_event: Event 1001
+D/BtGatt.btif( 2675): btif_gattc_upstreams_evt: Event 1
+I/MQClient( 1372): unable to connect to [/data/misc/location/mq/location-mq-s]:[No such file or directory]
+W/XTWiFiLP( 1372): connection failure. count 2
+I/ServiceManager(  318): Waiting for service AtCmdFwd...
+I/WifiStateMachine(  859): [signalPoll] newRssi = -50
+I/WifiStateMachine(  859): [signalPoll] newLinkSpeed = 72
+I/ServiceManager(  318): Waiting for service AtCmdFwd...
+I/rmt_storage(  328): rmt_storage_connect_cb: clnt_h=0x7 conn_h=0xb7be5178
+I/rmt_storage(  328): rmt_storage_rw_iovec_cb: /boot/modem_fs2: clnt_h=0x2: req_h=0xb msg_id=3: R/W request received
+I/rmt_storage(  328): wakelock acquired: 1, error no: 42
+I/rmt_storage(  328): rmt_storage_client_thread: /boot/modem_fs2: clnt_h=0x2 Unblock worker thread (th_id: -1212263880)
+I/rmt_storage(  328): rmt_storage_client_thread: /boot/modem_fs2: clnt_h=0x2: req_h=0xb msg_id=3: Bytes written = 1572864
+I/rmt_storage(  328): rmt_storage_client_thread: /boot/modem_fs2: clnt_h=0x2: req_h=0xb msg_id=3: Send response: res=0 err=0
+I/rmt_storage(  328): rmt_storage_client_thread: /boot/modem_fs2: clnt_h=0x2 About to block rmt_storage client thread (th_id: -1212263880) wakelock released: 1, error no: 0
+I/rmt_storage(  328): 
+I/rmt_storage(  328): rmt_storage_disconnect_cb: clnt_h=0x0x7 conn_h=0x0xb7be5178
+I/ServiceManager(  318): Waiting for service AtCmdFwd...
+W/Atfwd_Sendcmd(  318): AtCmdFwd service not published, waiting... retryCnt : 2
+I/WifiStateMachine(  859): [signalPoll] newRssi = -49
+I/WifiStateMachine(  859): [signalPoll] newLinkSpeed = 72
+I/ThermalEngine(  251): Sensor:substrate_therm:369000 mC
+E/Parcel  (  316): Reading a NULL string not supported here.
+E/Parcel  (  316): Reading a NULL string not supported here.
+D/StatusBar.NetworkController( 1158): onSignalStrengthsChanged signalStrength=SignalStrength: 99 0 -120 -160 -120 -1 -1 31 -78 -7 280 2147483647 2147483647 gsm|lte level=4
+D/StatusBar.NetworkController( 1158): refreshViews: Data not connected!!
+D/StatusBar.NetworkController( 1158): refreshViews connected={ wifi } level=4 combinedSignalIconId=0x7f0201ad/com.android.systemui:drawable/stat_sys_wifi_signal_4_fully mobileLabel=au wifiLabel="wlan-t"xxxxXXXXxxxxXXXX emergencyOnly=false combinedLabel="wlan-t"xxxxXXXXxxxxXXXX mAirplaneMode=false mDataActivity=0 mPhoneSignalIconId=0x7f0201a0 mQSPhoneSignalIconId=0x7f020076 mDataDirectionIconId=0x0 mDataSignalIconId=0x7f0201a0 mDataTypeIconId=0x0 mQSDataTypeIconId=0x0 mNoSimIconId=0x0 mWifiIconId=0x7f0201ad mQSWifiIconId=0x7f02008f mBluetoothTetherIconId=0x10807a9
+I/MQClient( 1372): unable to connect to [/data/misc/location/mq/location-mq-s]:[No such file or directory]
+W/XTWiFiLP( 1372): connection failure. count 3

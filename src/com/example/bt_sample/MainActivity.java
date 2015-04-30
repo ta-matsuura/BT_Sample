@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.bluetooth.*;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -32,14 +33,24 @@ public class MainActivity extends Activity {
     
     private BluetoothGattCallback mReadCallback;
     private BluetoothGattCallback mWriteCallback;
+    private BluetoothGattCallback mWriteCallback2;
+
+    private BluetoothGattCallback mRequestMtuCallback;
+
 
     public static BluetoothDevice mDevice;
     private EditText mEditText;
+    private EditText mEditText2;
+
     private static String mWriteString;
+    private static String mWriteLongString;
     private static ProgressDialog mDialog;
   
-    public static String getmWriteString() {
+    public static String getWriteString() {
       return mWriteString;
+    }
+    public static String getWriteLongString() {
+      return mWriteLongString;
     }
 
     @Override
@@ -66,6 +77,7 @@ public class MainActivity extends Activity {
         });
         mStatusText = (TextView)findViewById(R.id.text_status);
         mEditText   = (EditText)findViewById(R.id.editor1);
+        mEditText2   = (EditText)findViewById(R.id.editor2);
         
         mHandler = new Handler() {
             @Override
@@ -224,7 +236,7 @@ public class MainActivity extends Activity {
     }
     
     public void onClickWriteButton(View v) {
-      Log.v("Button","onClick writeClicked");
+      Log.v(TAG,"onClick writeClicked");
       if (mDevice == null) {
         return;
       }
@@ -240,7 +252,7 @@ public class MainActivity extends Activity {
       mBluetoothGatt = mDevice.connectGatt(getApplicationContext(), false, mWriteCallback);
     }
     public void onClickReadButton(View v) {
-      Log.v("Button","onClick readClicked");
+      Log.v(TAG,"onClick readClicked");
       if (mDevice == null) {
         return;
       }
@@ -253,6 +265,47 @@ public class MainActivity extends Activity {
       mDialog.show();
       mBluetoothGatt = mDevice.connectGatt(getApplicationContext(), false, mReadCallback);
     }
+    public void onClickRequestMtu(View v) {
+      Log.v(TAG,"onClick RequestMtu");
+      if (mDevice == null) {
+        return;
+      }
+      mBluetoothGatt = mDevice.connectGatt(getApplicationContext(), false, mRequestMtuCallback);
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if(mRequestMtuCallback == null) {
+          mRequestMtuCallback = new MyBluetoothGattCallback(getApplicationContext(), MyUtils.REQ_MTU, myHandler);
+        }
+        EditText et = (EditText)findViewById(R.id.mtu_value);
+        int i = Integer.parseInt(et.getText().toString());
+        mBluetoothGatt.requestMtu(i);
+        Log.v(TAG,"CALLED ---> RequestMtu() : " + i);
+      } else {
+        Log.v(TAG," BluetoothGatt.requestMtu() is not supported for Android KK.");
+        return;
+      }
+    }
+    /* 
+     * これはlong stringの書き込み用に用意したボタンなので
+     * 無効にしておく。ともあれlong stringの書き込みはどうやらできないっぽい
+     * android4.4 x Nexus9で試したが無理っぽい。FWのバグの可能性高い
+     * 参考サイト：http://code.google.com/p/android/issues/detail?id=158619
+     *  */
+//    public void onClickWriteButton2(View v) {
+//      Log.v(TAG,"onClick writeClicked2");
+//      if (mDevice == null) {
+//        return;
+//      }
+//      mWriteLongString = mEditText2.getText().toString();
+//      if (mWriteCallback2 == null) {
+//        mWriteCallback2 = new MyBluetoothGattCallback(getApplicationContext(), MyUtils.WRITE2, myHandler);
+//        mDialog.setMessage("write・・・");
+//        mDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+//        mDialog.setCanceledOnTouchOutside(false);
+//        mDialog.show();
+//        mBluetoothGatt = mDevice.connectGatt(getApplicationContext(), false, mWriteCallback2);
+//      }
+//
+//    }
     private BleScanGattHandler myHandler = new BleScanGattHandler(){
       @Override
       public void onProcessCompleted(Bundle bundle) {
