@@ -33,8 +33,12 @@ public class MyBluetoothGattCallback extends BluetoothGattCallback{
   @Override
   public void onCharacteristicRead(BluetoothGatt gatt,
     BluetoothGattCharacteristic characteristic, int status) {
+    Log.d(TAG, "START -> onCharacteristicRead() status(0:success, 257:fail) : " + status );
+    if(status != 0) {
+      Log.d(TAG, "Status error!!!");
+      return;
+    }
     String str = characteristic.getStringValue(0);
-	  Log.d(TAG, "START -> onCharacteristicRead() status(0:success, 257:fail) : " + status );
 	  Log.d(TAG, "String that you read is ... " + str);
 	  super.onCharacteristicRead(gatt, characteristic, status);
     Message message = new Message();

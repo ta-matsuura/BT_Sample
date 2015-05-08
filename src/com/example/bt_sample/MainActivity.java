@@ -2,8 +2,13 @@ package com.example.bt_sample;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.bluetooth.*;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothGatt;
+import android.bluetooth.BluetoothGattCallback;
+import android.bluetooth.BluetoothManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -102,6 +107,7 @@ public class MainActivity extends Activity {
             if (mDevice != null) {
               Toast.makeText(getApplicationContext(), mDevice.toString() + "を見つけました", Toast.LENGTH_LONG).show();
               setStatus(BleStatus.DEVICE_FOUND);
+              //pairDevice(mDevice);
             }else {
               Toast.makeText(getApplicationContext(), "見つかりませんでした", Toast.LENGTH_LONG).show();
               if (BleStatus.SCANNING.equals(mStatus)) {
@@ -174,7 +180,16 @@ public class MainActivity extends Activity {
       }
       return dType;
    }
-   private static BluetoothAdapter.LeScanCallback mLeScanCallback = new BluetoothAdapter.LeScanCallback() {
+   
+   private void pairDevice(BluetoothDevice device) {
+       Intent intent = new Intent(BluetoothDevice.ACTION_PAIRING_REQUEST);
+       intent.putExtra(BluetoothDevice.EXTRA_DEVICE, device);
+       intent.putExtra(BluetoothDevice.EXTRA_PAIRING_VARIANT, BluetoothDevice.PAIRING_VARIANT_PIN);
+       intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+       mContext.startActivity(intent);
+   }
+   
+   private BluetoothAdapter.LeScanCallback mLeScanCallback = new BluetoothAdapter.LeScanCallback() {
     @Override
     public void onLeScan(BluetoothDevice device, int rssi, byte[] scanRecord) {
       String uuid = MyUtils.makeUuidFromAdv(scanRecord);
