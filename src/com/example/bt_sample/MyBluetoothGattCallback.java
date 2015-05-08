@@ -54,6 +54,8 @@ public class MyBluetoothGattCallback extends BluetoothGattCallback{
       Message message = new Message();
       Bundle bundle = new Bundle();
       bundle.putString("char_write_result", characteristic.getStringValue(0));
+      Log.d(TAG, "char_write_result : " + characteristic.getStringValue(0));
+
       message.setData(bundle);
       mHandler.sendMessage(message);
     } else {
@@ -185,10 +187,10 @@ public class MyBluetoothGattCallback extends BluetoothGattCallback{
     serviceList = gatt.getServices();
     Log.d(TAG, "START ---> onServicesDiscovered() status : " + getGattStatus(status));
     if (status == BluetoothGatt.GATT_SUCCESS) {
-      BluetoothGattService service = gatt.getService(UUID.fromString(BleUuid.CHAR_INFO));
+      BluetoothGattService service = gatt.getService(UUID.fromString(BleUuid.UUID_GATT_SERVICE));
       if (service == null) {
         // サービスが見つからなかった
-        Log.d(TAG, " ----- > SERVICE_NOT_FOUND");
+        Log.d(TAG, " ----- > GATT service not found");
         MainActivity.setStatus(BleStatus.SERVICE_NOT_FOUND);
       } else {
         // サービスを見つけた
@@ -196,13 +198,12 @@ public class MyBluetoothGattCallback extends BluetoothGattCallback{
         MainActivity.setStatus(BleStatus.SERVICE_FOUND);
         if(mType == MyUtils.WRITE) {
           BluetoothGattCharacteristic characteristic =
-              service.getCharacteristic(UUID.fromString(BleUuid.CHAR_ONOFF_STRING));
+              service.getCharacteristic(UUID.fromString(BleUuid.UUID_TEST_READWRITE));
     
           if (characteristic == null) {
             // キャラクタリスティックが見つからなかった
             MainActivity.setStatus(BleStatus.CHARACTERISTIC_NOT_FOUND);
           } else {
-            Log.d(TAG, " ----- > CHAR_ONOFF_STRING FOUND");
             if(characteristic.setValue(MainActivity.getWriteString())) {
               if(gatt.writeCharacteristic(characteristic)){
                 Log.d(TAG, " Write request operation was initiated successfully. Please wait callback.");
@@ -215,13 +216,12 @@ public class MyBluetoothGattCallback extends BluetoothGattCallback{
           }
         } else if(mType == MyUtils.READ){
           BluetoothGattCharacteristic characteristic =
-              service.getCharacteristic(UUID.fromString(BleUuid.CHAR_NAME_STRING));
+              service.getCharacteristic(UUID.fromString(BleUuid.UUID_TEST_READWRITE));
     
           if (characteristic == null) {
             // キャラクタリスティックが見つからなかった
             MainActivity.setStatus(BleStatus.CHARACTERISTIC_NOT_FOUND);
           } else {
-            Log.d(TAG, " ----- > CHAR_NAME_STRING FOUND");
             if (gatt.readCharacteristic(characteristic)) {
                 Log.d(TAG, " Read request operation was initiated successfully. Please wait callback.");
             }
@@ -234,7 +234,7 @@ public class MyBluetoothGattCallback extends BluetoothGattCallback{
 //            return;
 //          }
           BluetoothGattCharacteristic charactaristic =
-              service.getCharacteristic(UUID.fromString(BleUuid.CHAR_ONOFF_STRING));
+              service.getCharacteristic(UUID.fromString(BleUuid.UUID_TEST_READWRITE));
           isWriting = true;
           if(!writeCharactaristic(gatt, charactaristic)) {
             isWriting = false;

@@ -179,7 +179,7 @@ public class MainActivity extends Activity {
     public void onLeScan(BluetoothDevice device, int rssi, byte[] scanRecord) {
       String uuid = MyUtils.makeUuidFromAdv(scanRecord);
 
-      if (uuid.equals(BleUuid.SERVICE_UUID)) {
+      if (uuid.equals(BleUuid.UUID_SERVICE)) {
         Log.d(TAG, "uuid : " + uuid);
         mDevice = device;
       }
