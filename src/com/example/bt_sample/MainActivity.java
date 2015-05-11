@@ -28,20 +28,12 @@ public class MainActivity extends Activity {
     private static final long SCAN_PERIOD = 3500;
  
     private static final String TAG = "BLESample";
-    private static BleStatus mStatus = BleStatus.DISCONNECTED;
+    private static BleStatus mStatus = BleStatus.INIT;
     private static Handler mHandler;
     private BluetoothAdapter mBluetoothAdapter;
     private BluetoothManager mBluetoothManager;
-    private static BluetoothGatt mBluetoothGatt;
-
     private TextView mStatusText;
-    
-    private BluetoothGattCallback mReadCallback;
-    private BluetoothGattCallback mWriteCallback;
-    private BluetoothGattCallback mWriteCallback2;
-
-    private BluetoothGattCallback mRequestMtuCallback;
-
+    private MyBluetoothGattCallback mMyBluetoothCallback = null;
 
     public static BluetoothDevice mDevice;
     private EditText mEditText;
@@ -68,6 +60,17 @@ public class MainActivity extends Activity {
  
         mBluetoothManager = (BluetoothManager)getSystemService(BLUETOOTH_SERVICE);
         mBluetoothAdapter = mBluetoothManager.getAdapter();
+        findViewById(R.id.btn_scan).setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            Button btn = (Button)findViewById(R.id.btn_scan);
+            if (btn.getText().toString().equals("Clear")) {
+              discardDevice();
+            } else {
+              scan();
+            }
+          }
+      });
         findViewById(R.id.btn_connect).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,9 +94,30 @@ public class MainActivity extends Activity {
             }
         };
     }
+    
+    /** BLE機器を解除する */
+    private void discardDevice() {
+      Log.d(TAG, "START ------> all information clear... start from scan. ");
+      Toast.makeText(getApplicationContext(), "すべて破棄しました。Scanからやり直してください。", Toast.LENGTH_LONG).show();
+
+      Button btn = (Button)findViewById(R.id.btn_scan);
+      btn.setText("Scan");
+      mDevice = null;
+           
+      TextView tx = (TextView)findViewById(R.id.read_result);
+      tx.setText("none");
+      if(mDialog != null) {
+        mDialog.dismiss();
+      }
+      if (mMyBluetoothCallback != null) {
+        mMyBluetoothCallback.gattClose();
+      }
+      mBluetoothAdapter.stopLeScan(mLeScanCallback);
+      setStatus(BleStatus.INIT);
+    }
  
     /** BLE機器を検索する */
-    private void connect() {
+    private void scan() {
       mDialog.setMessage("スキャン中・・・");
       mDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
       mDialog.setCanceledOnTouchOutside(false);
@@ -109,9 +133,9 @@ public class MainActivity extends Activity {
               setStatus(BleStatus.DEVICE_FOUND);
               //pairDevice(mDevice);
             }else {
-              Toast.makeText(getApplicationContext(), "見つかりませんでした", Toast.LENGTH_LONG).show();
+              Toast.makeText(getApplicationContext(), "デバイスが見つかりませんでした", Toast.LENGTH_LONG).show();
               if (BleStatus.SCANNING.equals(mStatus)) {
-                setStatus(BleStatus.CLOSED);
+                setStatus(BleStatus.INIT);
               }
             }
           }
@@ -125,22 +149,41 @@ public class MainActivity extends Activity {
       mBluetoothAdapter.startLeScan(mLeScanCallback);
       setStatus(BleStatus.SCANNING);
     }
+    
+    /** GATT Serverと接続する */
+    private void connect() {
+      if (mDevice == null) {
+        Toast.makeText(getApplicationContext(), "デバイスが見つかりません。スキャンが必要です。", Toast.LENGTH_LONG).show();
+        return;
+      }
+      if (mStatus != BleStatus.DEVICE_FOUND && mStatus != BleStatus.GATT_DISCONNECTED) {
+        Toast.makeText(getApplicationContext(), "すでに接続中かデバイスが見つかりません", Toast.LENGTH_LONG).show();
+        return;
+      }
+      Log.v(TAG,"onClick connect");
+      mDialog.setMessage("connecting・・・");
+      mDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+      mDialog.setCanceledOnTouchOutside(false);
+      mDialog.show();
+      
+      if(mMyBluetoothCallback == null) {
+        mMyBluetoothCallback = new MyBluetoothGattCallback(getApplicationContext(), myHandler);
+      }
+      mDevice.connectGatt(getApplicationContext(), false, mMyBluetoothCallback);      
+    }
  
-    /** BLE 機器との接続を解除する */
+    /** GATT Serverとのdisconnectする */
     private void disconnect() {
       Log.d(TAG, "START ------> disconnect(): ");
-      TextView tx = (TextView)findViewById(R.id.read_result);
-      tx.setText("none");
-      mDevice = null;
       if(MainActivity.mDialog != null) {
     	  mDialog.dismiss();
       }
-      mBluetoothAdapter.stopLeScan(mLeScanCallback);
-      if (mBluetoothGatt != null) {
-        mBluetoothGatt.close();
-        mBluetoothGatt = null;
+      if (mMyBluetoothCallback != null) {
+        mMyBluetoothCallback.gattDisconnect();
       }
-      setStatus(BleStatus.CLOSED);
+      if( mStatus == BleStatus.GATT_CONNECTED || mStatus == BleStatus.GATT_SERVICE_DISCOVERED) {
+        setStatus(BleStatus.GATT_DISCONNECTED);
+      }
     }
     
     private static String getBondState(int state) {
@@ -181,13 +224,13 @@ public class MainActivity extends Activity {
       return dType;
    }
    
-   private void pairDevice(BluetoothDevice device) {
-       Intent intent = new Intent(BluetoothDevice.ACTION_PAIRING_REQUEST);
-       intent.putExtra(BluetoothDevice.EXTRA_DEVICE, device);
-       intent.putExtra(BluetoothDevice.EXTRA_PAIRING_VARIANT, BluetoothDevice.PAIRING_VARIANT_PIN);
-       intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-       mContext.startActivity(intent);
-   }
+//   private void pairDevice(BluetoothDevice device) {
+//       Intent intent = new Intent(BluetoothDevice.ACTION_PAIRING_REQUEST);
+//       intent.putExtra(BluetoothDevice.EXTRA_DEVICE, device);
+//       intent.putExtra(BluetoothDevice.EXTRA_PAIRING_VARIANT, BluetoothDevice.PAIRING_VARIANT_PIN);
+//       intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//       mContext.startActivity(intent);
+//   }
    
    private BluetoothAdapter.LeScanCallback mLeScanCallback = new BluetoothAdapter.LeScanCallback() {
     @Override
@@ -197,6 +240,10 @@ public class MainActivity extends Activity {
       if (uuid.equals(BleUuid.UUID_SERVICE)) {
         Log.d(TAG, "uuid : " + uuid);
         mDevice = device;
+        setStatus(BleStatus.DEVICE_FOUND);
+        
+        Button btn = (Button)findViewById(R.id.btn_scan);
+        btn.setText("Clear");
       }
 
       Log.d(TAG, "device found: " + device.getName());
@@ -218,11 +265,6 @@ public class MainActivity extends Activity {
       Log.d(TAG, "device.getType : " + getDeviceType(device.getType()));
       Log.d(TAG, "device.getAddress(MAC Addr) : " + device.getAddress());
       Log.d(TAG, "device.getBondState : " + getBondState(device.getBondState()));
-
-      //setStatus(BleStatus.SCAN_STOP);
-      // 省電力のためスキャンを停止する
-      //mBluetoothAdapter.stopLeScan(this);
- 
     }};
      
     public static void setStatus(BleStatus status) {
@@ -231,17 +273,15 @@ public class MainActivity extends Activity {
     }
  
     public enum BleStatus {
-        DISCONNECTED,
-        SCANNING,
         SCAN_FAILED,
+        SCANNING,
         DEVICE_FOUND,
-        SERVICE_NOT_FOUND,
-        SERVICE_FOUND,
+        GATT_CONNECTED,
+        GATT_DISCONNECTED,
+        GATT_SERVICE_DISCOVERED,
+        GATT_SERVICE_NOT_FOUND,
         CHARACTERISTIC_NOT_FOUND,
-        NOTIFICATION_REGISTERED,
-        NOTIFICATION_REGISTER_FAILED,
-        CLOSED,
-        SCAN_STOP
+        INIT
         ;
         public Message message() {
             Message message = new Message();
@@ -250,49 +290,58 @@ public class MainActivity extends Activity {
         }
     }
     
+    /* Tap Write button */
     public void onClickWriteButton(View v) {
       Log.v(TAG,"onClick writeClicked");
       if (mDevice == null) {
+        Toast.makeText(getApplicationContext(), "デバイスが見つかりません。スキャンが必要です。", Toast.LENGTH_LONG).show();
+        return;
+      }
+      if (mStatus != BleStatus.GATT_SERVICE_DISCOVERED) {
+        Toast.makeText(getApplicationContext(), "GATT Serviceに接続してください。", Toast.LENGTH_LONG).show();
         return;
       }
       mWriteString = mEditText.getText().toString();
-      if (mWriteCallback == null) {
-        mWriteCallback = new MyBluetoothGattCallback(getApplicationContext(), MyUtils.WRITE, myHandler);
-      }
+
       mDialog.setMessage("write・・・");
       mDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
       mDialog.setCanceledOnTouchOutside(false);
       mDialog.show();
-
-      mBluetoothGatt = mDevice.connectGatt(getApplicationContext(), false, mWriteCallback);
+      if(mMyBluetoothCallback != null)
+        mMyBluetoothCallback.writeRequest();
     }
+
+    /* Tap Read button */
     public void onClickReadButton(View v) {
       Log.v(TAG,"onClick readClicked");
       if (mDevice == null) {
+        Toast.makeText(getApplicationContext(), "デバイスが見つかりません。スキャンが必要です。", Toast.LENGTH_LONG).show();
         return;
       }
-      if(mReadCallback == null) {
-        mReadCallback = new MyBluetoothGattCallback(getApplicationContext(), MyUtils.READ, myHandler);
+      if (mStatus != BleStatus.GATT_SERVICE_DISCOVERED) {
+        Toast.makeText(getApplicationContext(), "GATT Serviceに接続してください。", Toast.LENGTH_LONG).show();
+        return;
       }
+
       mDialog.setMessage("read・・・");
       mDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
       mDialog.setCanceledOnTouchOutside(false);
       mDialog.show();
-      mBluetoothGatt = mDevice.connectGatt(getApplicationContext(), false, mReadCallback);
+      
+      if(mMyBluetoothCallback != null)
+        mMyBluetoothCallback.readRequest();
     }
+
     public void onClickRequestMtu(View v) {
       Log.v(TAG,"onClick RequestMtu");
       if (mDevice == null) {
         return;
       }
-      mBluetoothGatt = mDevice.connectGatt(getApplicationContext(), false, mRequestMtuCallback);
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-        if(mRequestMtuCallback == null) {
-          mRequestMtuCallback = new MyBluetoothGattCallback(getApplicationContext(), MyUtils.REQ_MTU, myHandler);
-        }
+
         EditText et = (EditText)findViewById(R.id.mtu_value);
         int i = Integer.parseInt(et.getText().toString());
-        mBluetoothGatt.requestMtu(i);
+//        mBluetoothGatt.requestMtu(i);
         Log.v(TAG,"CALLED ---> RequestMtu() : " + i);
       } else {
         Log.v(TAG," BluetoothGatt.requestMtu() is not supported for Android KK.");
@@ -305,29 +354,32 @@ public class MainActivity extends Activity {
      * android4.4 x Nexus9で試したが無理っぽい。FWのバグの可能性高い
      * 参考サイト：http://code.google.com/p/android/issues/detail?id=158619
      *  */
-//    public void onClickWriteButton2(View v) {
-//      Log.v(TAG,"onClick writeClicked2");
-//      if (mDevice == null) {
-//        return;
-//      }
-//      mWriteLongString = mEditText2.getText().toString();
-//      if (mWriteCallback2 == null) {
-//        mWriteCallback2 = new MyBluetoothGattCallback(getApplicationContext(), MyUtils.WRITE2, myHandler);
-//        mDialog.setMessage("write・・・");
-//        mDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-//        mDialog.setCanceledOnTouchOutside(false);
-//        mDialog.show();
-//        mBluetoothGatt = mDevice.connectGatt(getApplicationContext(), false, mWriteCallback2);
-//      }
-//
-//    }
+    public void onClickWriteButton2(View v) {
+      Log.v(TAG, "onClickWriteButton2");
+      if (mDevice == null) {
+        Toast.makeText(getApplicationContext(), "デバイスが見つかりません。スキャンが必要です。", Toast.LENGTH_LONG).show();
+        return;
+      }
+      if (mStatus != BleStatus.GATT_SERVICE_DISCOVERED) {
+        Toast.makeText(getApplicationContext(), "GATT Serviceに接続してください。", Toast.LENGTH_LONG).show();
+        return;
+      }
+      mWriteLongString = mEditText2.getText().toString();
+
+      mDialog.setMessage("write・・・");
+      mDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+      mDialog.setCanceledOnTouchOutside(false);
+      mDialog.show();
+      if(mMyBluetoothCallback != null)
+        mMyBluetoothCallback.writeLongStringRequest();
+
+    }
     private BleScanGattHandler myHandler = new BleScanGattHandler(){
       @Override
       public void onProcessCompleted(Bundle bundle) {
     	if(mDialog.isShowing()) {
     		  mDialog.dismiss();
     	}
-    	mBluetoothGatt.close();
         if (bundle.get("char_read_result") != null) {
           TextView tx = (TextView)findViewById(R.id.read_result);
           tx.setText(bundle.get("char_read_result").toString());

@@ -20,12 +20,12 @@ import android.util.Log;
 
 public class MyBluetoothGattCallback extends BluetoothGattCallback{
   private static final String TAG = "BLESample";
-  private int mType;
   private BleScanGattHandler mHandler;
   private boolean isWriting;
+  private BluetoothGatt mGatt;
+  private BluetoothGattService mGattService;
 
-  public MyBluetoothGattCallback(Context context, int type, BleScanGattHandler handler) {
-    mType = type;
+  public MyBluetoothGattCallback(Context context, BleScanGattHandler handler) {
     mHandler = handler;
     isWriting = false;
   }
@@ -125,16 +125,17 @@ public class MyBluetoothGattCallback extends BluetoothGattCallback{
       Bundle bundle = new Bundle();
       message.setData(bundle);
       mHandler.sendMessage(message);
-      MainActivity.setStatus(BleStatus.DISCONNECTED);
+      MainActivity.setStatus(BleStatus.GATT_DISCONNECTED);
       return;
     }
     if (newState == BluetoothProfile.STATE_CONNECTED) {
+      MainActivity.setStatus(BleStatus.GATT_CONNECTED);
       // GATTへ接続成功
       // サービスを検索する
       gatt.discoverServices();
     } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
       // GATT通信から切断された
-      MainActivity.setStatus(BleStatus.DISCONNECTED);
+      MainActivity.setStatus(BleStatus.GATT_DISCONNECTED);
       gatt.close();
     } else if (newState == BluetoothProfile.STATE_CONNECTING) {
     } else if (newState == BluetoothProfile.STATE_DISCONNECTING) {
@@ -179,93 +180,141 @@ public class MyBluetoothGattCallback extends BluetoothGattCallback{
     }
     return state;
   }
+  
+  public void writeRequest() {
+    if(mGattService == null) {
+      return;
+    }
+    BluetoothGattCharacteristic characteristic =
+        mGattService.getCharacteristic(UUID.fromString(BleUuid.UUID_TEST_READWRITE));
+
+    if (characteristic == null) {
+      // キャラクタリスティックが見つからなかった
+      MainActivity.setStatus(BleStatus.CHARACTERISTIC_NOT_FOUND);
+    } else {
+      if(characteristic.setValue(MainActivity.getWriteString())) {
+        if(mGatt.writeCharacteristic(characteristic)){
+          Log.d(TAG, " Write request operation was initiated successfully. Please wait callback.");
+        }else {
+          Log.d(TAG, " writeCharacteristic is failed");
+        }
+      }else{
+        Log.d(TAG, " setValue is failed");
+      }              
+    }
+  }
+  
+  public void writeLongStringRequest() {
+    if(mGattService == null) {
+      return;
+    }
+    Log.d(TAG, "mGatt.beginReliableWrite() : " + mGatt.beginReliableWrite());
+    BluetoothGattCharacteristic characteristic =
+      mGattService.getCharacteristic(UUID.fromString(BleUuid.UUID_TEST_READWRITE));
+    characteristic.setValue("TEST DADU");
+    //mGatt.writeCharacteristic(characteristic);
+    Log.d(TAG, "mGatt.executeReliableWrite() : " + mGatt.executeReliableWrite());
+
+    
+    
+//    if (mGatt.beginReliableWrite()) {
+//    
+//      BluetoothGattCharacteristic characteristic =
+//          mGattService.getCharacteristic(UUID.fromString(BleUuid.UUID_TEST_READWRITE));
+//  
+//      if (characteristic == null) {
+//        // キャラクタリスティックが見つからなかった
+//        MainActivity.setStatus(BleStatus.CHARACTERISTIC_NOT_FOUND);
+//      } else {
+//        if(characteristic.setValue(MainActivity.getWriteLongString())) {
+//          if(mGatt.writeCharacteristic(characteristic)){
+//            Log.d(TAG, " Write request operation was initiated successfully. Please wait callback.");
+//          }else {
+//            Log.d(TAG, " writeCharacteristic is failed");
+//          }
+//        }else{
+//          Log.d(TAG, " setValue is failed");
+//        }              
+//      }
+//    }
+  }
+  
+  public void readRequest() {
+    if(mGattService == null) {
+      return;
+    }
+    BluetoothGattCharacteristic characteristic =
+        mGattService.getCharacteristic(UUID.fromString(BleUuid.UUID_TEST_READWRITE));
+    if (characteristic == null) {
+      // キャラクタリスティックが見つからなかった
+      MainActivity.setStatus(BleStatus.CHARACTERISTIC_NOT_FOUND);
+    } else {
+      if (mGatt.readCharacteristic(characteristic)) {
+          Log.d(TAG, " Read request operation was initiated successfully. Please wait callback.");
+      }
+    }          
+  }
+  
+  public void gattDisconnect() {
+    if (mGatt != null) {
+      mGatt.disconnect();
+      MainActivity.setStatus(BleStatus.GATT_DISCONNECTED);
+    }
+  }
+  public void gattClose() {
+    if (mGatt != null) {
+      mGatt.close();
+      mGatt = null;
+    }
+    MainActivity.setStatus(BleStatus.INIT);
+  }
 
   @Override
   public void onServicesDiscovered(BluetoothGatt gatt, int status) {
-    List<BluetoothGattService> serviceList = gatt.getServices();
+    mGatt = gatt;
+    List<BluetoothGattService> serviceList = mGatt.getServices();
     Iterator<BluetoothGattService> i = serviceList.iterator();
     while (i.hasNext()) {
       BluetoothGattService servise= (BluetoothGattService)i.next();
       Log.d(TAG, "service UUID : " + servise.getUuid());
     }
-    serviceList = gatt.getServices();
     Log.d(TAG, "START ---> onServicesDiscovered() status : " + getGattStatus(status));
     if (status == BluetoothGatt.GATT_SUCCESS) {
-      BluetoothGattService service = gatt.getService(UUID.fromString(BleUuid.UUID_GATT_SERVICE));
-      if (service == null) {
+      mGattService = mGatt.getService(UUID.fromString(BleUuid.UUID_GATT_SERVICE));
+      if (mGattService == null) {
         // サービスが見つからなかった
         Log.d(TAG, " ----- > GATT service not found");
-        MainActivity.setStatus(BleStatus.SERVICE_NOT_FOUND);
+        MainActivity.setStatus(BleStatus.GATT_SERVICE_NOT_FOUND);
       } else {
         // サービスを見つけた
-        Log.d(TAG, " ----- > SERVICE_FOUND");
-        MainActivity.setStatus(BleStatus.SERVICE_FOUND);
-        if(mType == MyUtils.WRITE) {
-          BluetoothGattCharacteristic characteristic =
-              service.getCharacteristic(UUID.fromString(BleUuid.UUID_TEST_READWRITE));
-    
-          if (characteristic == null) {
-            // キャラクタリスティックが見つからなかった
-            MainActivity.setStatus(BleStatus.CHARACTERISTIC_NOT_FOUND);
-          } else {
-            if(characteristic.setValue(MainActivity.getWriteString())) {
-              if(gatt.writeCharacteristic(characteristic)){
-                Log.d(TAG, " Write request operation was initiated successfully. Please wait callback.");
-              }else {
-                Log.d(TAG, " writeCharacteristic is failed");
-              }
-            }else{
-              Log.d(TAG, " setValue is failed");
-            }              
-          }
-        } else if(mType == MyUtils.READ){
-          BluetoothGattCharacteristic characteristic =
-              service.getCharacteristic(UUID.fromString(BleUuid.UUID_TEST_READWRITE));
-    
-          if (characteristic == null) {
-            // キャラクタリスティックが見つからなかった
-            MainActivity.setStatus(BleStatus.CHARACTERISTIC_NOT_FOUND);
-          } else {
-            if (gatt.readCharacteristic(characteristic)) {
-                Log.d(TAG, " Read request operation was initiated successfully. Please wait callback.");
-            }
-          }          
-        } else if (mType == MyUtils.REQ_MTU) {
-          //nothing to do...
-        } else if (mType == MyUtils.WRITE2) {
-//          if(!gatt.beginReliableWrite()) {
-//            Log.d(TAG, " beginReliableWrite is failed.");
-//            return;
-//          }
-          BluetoothGattCharacteristic charactaristic =
-              service.getCharacteristic(UUID.fromString(BleUuid.UUID_TEST_READWRITE));
-          isWriting = true;
-          if(!writeCharactaristic(gatt, charactaristic)) {
-            isWriting = false;
-          }
-        }
+        Log.d(TAG, " ----- > GATT_SERVICE_DISCOVERED");
+        MainActivity.setStatus(BleStatus.GATT_SERVICE_DISCOVERED);
       }
     }
+    Message message = new Message();
+    Bundle bundle = new Bundle();
+    message.setData(bundle);
+    mHandler.sendMessage(message);
   } // end of the function [onServicesDiscovered()]
   
-  private boolean writeCharactaristic(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic){
-    boolean ret = false;
-    if(characteristic == null) {
-      Log.d(TAG, "ERROR: characteristic is null");
-      return ret;
-    }
-    if(characteristic.setValue(MainActivity.getWriteLongString())) {
-      if(gatt.writeCharacteristic(characteristic)){
-        Log.d(TAG, " Requested long String write. Please wait callback.");
-        ret = true;
-      }else {
-        Log.d(TAG, " writeCharacteristic is failed");
-      }
-    }else{
-      Log.d(TAG, " setValue is failed");
-    }
-    return ret;
-  }
+//  private boolean writeCharactaristic(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic){
+//    boolean ret = false;
+//    if(characteristic == null) {
+//      Log.d(TAG, "ERROR: characteristic is null");
+//      return ret;
+//    }
+//    if(characteristic.setValue(MainActivity.getWriteLongString())) {
+//      if(gatt.writeCharacteristic(characteristic)){
+//        Log.d(TAG, " Requested long String write. Please wait callback.");
+//        ret = true;
+//      }else {
+//        Log.d(TAG, " writeCharacteristic is failed");
+//      }
+//    }else{
+//      Log.d(TAG, " setValue is failed");
+//    }
+//    return ret;
+//  }
 }
 
 // キャラクタリスティックを見つけた

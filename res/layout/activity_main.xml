@@ -21,27 +21,33 @@
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="disconnected"
+            android:text="INIT"
             android:id="@+id/text_status"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/textView"
             android:layout_marginLeft="10dp"/>
- 
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Scan"
+            android:id="@+id/btn_scan"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/textView"
+			android:layout_alignLeft="@id/textView"/>
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Connect"
             android:id="@+id/btn_connect"
-            android:layout_marginTop="10dp"
-            android:layout_below="@id/textView"
-            android:layout_alignLeft="@id/textView"/>
+            android:layout_alignTop="@id/btn_scan"
+            android:layout_toRightOf="@id/btn_scan"/> 
  
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Disconnect"
             android:id="@+id/btn_disconnect"
-            android:layout_alignTop="@+id/btn_connect"
+            android:layout_alignTop="@id/btn_scan"
             android:layout_toRightOf="@id/btn_connect"/> 
    	<ImageView
 		android:src="@android:drawable/divider_horizontal_textfield"
@@ -133,7 +139,6 @@
         android:text="Request MTU"
         android:layout_below="@id/mtu_value"/> 	
         
-    
      <ImageView
 		android:src="@android:drawable/divider_horizontal_textfield"
 		android:layout_marginTop="20dp"
