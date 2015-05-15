@@ -126,7 +126,8 @@
    	<EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="none"
+        android:text="100"
+        android:inputType="number"
         android:id="@+id/mtu_value"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/mtu_title"
@@ -155,7 +156,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/divider4"
-        android:text="123456789012345678" />	
+        android:text="とにかく長いデータをここに書いてみて、writeしてみて。すずきたおう 080-1111-2222 test@test.com" />	
     <Button
         android:id="@+id/btn_write2"
         android:onClick="onClickWriteButton2"

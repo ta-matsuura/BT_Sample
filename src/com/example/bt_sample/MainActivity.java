@@ -7,8 +7,10 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothGattCallback;
 import android.bluetooth.BluetoothManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -42,6 +44,7 @@ public class MainActivity extends Activity {
     private static String mWriteString;
     private static String mWriteLongString;
     private static ProgressDialog mDialog;
+    private IntentFilter intentfilter;
   
     public static String getWriteString() {
       return mWriteString;
@@ -93,6 +96,12 @@ public class MainActivity extends Activity {
                 mStatusText.setText(((BleStatus) msg.obj).name());
             }
         };
+        
+//        receiver = new MyBroadcastReceiver();
+//        intentfilter = new IntentFilter();
+//        intentfilter.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
+        IntentFilter intent = new IntentFilter(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
+        registerReceiver(mReceiver, intent);
     }
     
     /** BLE機器を解除する */
@@ -118,6 +127,7 @@ public class MainActivity extends Activity {
  
     /** BLE機器を検索する */
     private void scan() {
+      mDevice = null;
       mDialog.setMessage("スキャン中・・・");
       mDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
       mDialog.setCanceledOnTouchOutside(false);
@@ -129,8 +139,9 @@ public class MainActivity extends Activity {
             mBluetoothAdapter.stopLeScan(mLeScanCallback);
             mDialog.dismiss();
             if (mDevice != null) {
-              Toast.makeText(getApplicationContext(), mDevice.toString() + "を見つけました", Toast.LENGTH_LONG).show();
               setStatus(BleStatus.DEVICE_FOUND);
+              Log.d(TAG, "mDevice.toString : " + mDevice.toString());
+
               //pairDevice(mDevice);
             }else {
               Toast.makeText(getApplicationContext(), "デバイスが見つかりませんでした", Toast.LENGTH_LONG).show();
@@ -169,6 +180,12 @@ public class MainActivity extends Activity {
       if(mMyBluetoothCallback == null) {
         mMyBluetoothCallback = new MyBluetoothGattCallback(getApplicationContext(), myHandler);
       }
+      /* これを呼ぶと、ペアリング要求が対向機に送られて
+       * パスキー認証が行われるが、それをクリアしても
+       * なぜかうまくいかない */
+      //
+      //Log.v(TAG,"mDevice.createBond() : " + mDevice.createBond());
+      
       mDevice.connectGatt(getApplicationContext(), false, mMyBluetoothCallback);      
     }
  
@@ -240,15 +257,16 @@ public class MainActivity extends Activity {
       if (uuid.equals(BleUuid.UUID_SERVICE)) {
         Log.d(TAG, "uuid : " + uuid);
         mDevice = device;
-        setStatus(BleStatus.DEVICE_FOUND);
-        
+        Log.d(TAG, "device.toString : " + device.toString());
+        Log.d(TAG, "mDevice.toString : " + mDevice.toString());
+
+
         Button btn = (Button)findViewById(R.id.btn_scan);
         btn.setText("Clear");
       }
-
-      Log.d(TAG, "device found: " + device.getName());
-      Log.d(TAG, "rssi: " + rssi);
-      Log.d(TAG, "scanRecord Length: " + scanRecord.length);
+//
+//      Log.d(TAG, "rssi: " + rssi);
+//      Log.d(TAG, "scanRecord Length: " + scanRecord.length);
 
 //        for (int i = 0; scanRecord.length > i; i++){
 //          Log.d(TAG, "scanRecord[ " + i + "]" + " : 0x" + Integer.toHexString(scanRecord[i] & 0xff));
@@ -370,9 +388,9 @@ public class MainActivity extends Activity {
       mDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
       mDialog.setCanceledOnTouchOutside(false);
       mDialog.show();
-      if(mMyBluetoothCallback != null)
+      if(mMyBluetoothCallback != null) {
         mMyBluetoothCallback.writeLongStringRequest();
-
+      }
     }
     private BleScanGattHandler myHandler = new BleScanGattHandler(){
       @Override
@@ -383,6 +401,27 @@ public class MainActivity extends Activity {
         if (bundle.get("char_read_result") != null) {
           TextView tx = (TextView)findViewById(R.id.read_result);
           tx.setText(bundle.get("char_read_result").toString());
+        }
+      }
+    };
+    
+    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+
+      public void onReceive(Context context, Intent intent) {
+        String action = intent.getAction();
+
+        if (BluetoothDevice.ACTION_BOND_STATE_CHANGED.equals(action)) {
+             final int state        = intent.getIntExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothDevice.ERROR);
+             final int prevState    = intent.getIntExtra(BluetoothDevice.EXTRA_PREVIOUS_BOND_STATE, BluetoothDevice.ERROR);
+
+             if (state == BluetoothDevice.BOND_BONDED && prevState == BluetoothDevice.BOND_BONDING) {
+               Toast.makeText(getApplicationContext(), "paired", Toast.LENGTH_LONG).show();
+               mDevice.connectGatt(getApplicationContext(), false, mMyBluetoothCallback);
+
+             } else if (state == BluetoothDevice.BOND_NONE && prevState == BluetoothDevice.BOND_BONDED){
+               Toast.makeText(getApplicationContext(), "unpaired", Toast.LENGTH_LONG).show();
+             }
+
         }
       }
     };

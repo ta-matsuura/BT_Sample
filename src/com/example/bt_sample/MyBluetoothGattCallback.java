@@ -208,15 +208,12 @@ public class MyBluetoothGattCallback extends BluetoothGattCallback{
     if(mGattService == null) {
       return;
     }
-    Log.d(TAG, "mGatt.beginReliableWrite() : " + mGatt.beginReliableWrite());
-    BluetoothGattCharacteristic characteristic =
-      mGattService.getCharacteristic(UUID.fromString(BleUuid.UUID_TEST_READWRITE));
-    characteristic.setValue("TEST DADU");
-    //mGatt.writeCharacteristic(characteristic);
-    Log.d(TAG, "mGatt.executeReliableWrite() : " + mGatt.executeReliableWrite());
+   
+      BluetoothGattCharacteristic characteristic =
+          mGattService.getCharacteristic(UUID.fromString(BleUuid.UUID_TEST_READWRITE));
+      characteristic.setValue(MainActivity.getWriteLongString());
+      mGatt.writeCharacteristic(characteristic);
 
-    
-    
 //    if (mGatt.beginReliableWrite()) {
 //    
 //      BluetoothGattCharacteristic characteristic =
@@ -247,8 +244,13 @@ public class MyBluetoothGattCallback extends BluetoothGattCallback{
         mGattService.getCharacteristic(UUID.fromString(BleUuid.UUID_TEST_READWRITE));
     if (characteristic == null) {
       // キャラクタリスティックが見つからなかった
+      Message message = new Message();
+      Bundle bundle = new Bundle();
+      message.setData(bundle);
+      mHandler.sendMessage(message);
       MainActivity.setStatus(BleStatus.CHARACTERISTIC_NOT_FOUND);
     } else {
+      Log.d(TAG, "characteristic.getPermissions() : " + characteristic.getPermissions());
       if (mGatt.readCharacteristic(characteristic)) {
           Log.d(TAG, " Read request operation was initiated successfully. Please wait callback.");
       }
