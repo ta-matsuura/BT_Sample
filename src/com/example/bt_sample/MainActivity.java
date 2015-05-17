@@ -129,7 +129,8 @@ public class MainActivity extends Activity {
  
     /** BLE機器を検索する */
     private void scan() {
-      if(true) {
+      /*お試しなのでデッドコードでよい*/
+      if(false) {
         Intent discoverableIntent = new
             Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
             discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
