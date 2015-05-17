@@ -1,5 +1,7 @@
 package com.example.bt_sample;
 
+import java.util.Set;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
@@ -127,6 +129,14 @@ public class MainActivity extends Activity {
  
     /** BLE機器を検索する */
     private void scan() {
+      if(true) {
+        Intent discoverableIntent = new
+            Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
+            discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
+            startActivity(discoverableIntent);
+            return;
+      }
+      
       mDevice = null;
       mDialog.setMessage("スキャン中・・・");
       mDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -140,8 +150,6 @@ public class MainActivity extends Activity {
             mDialog.dismiss();
             if (mDevice != null) {
               setStatus(BleStatus.DEVICE_FOUND);
-              Log.d(TAG, "mDevice.toString : " + mDevice.toString());
-
               //pairDevice(mDevice);
             }else {
               Toast.makeText(getApplicationContext(), "デバイスが見つかりませんでした", Toast.LENGTH_LONG).show();
@@ -159,6 +167,20 @@ public class MainActivity extends Activity {
       Log.d(TAG, "CAll  mBluetoothAdapter.startLeScan(this);");
       mBluetoothAdapter.startLeScan(mLeScanCallback);
       setStatus(BleStatus.SCANNING);
+      
+      Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
+      // If there are paired devices
+      if (pairedDevices.size() > 0) {
+        // Loop through paired devices
+        for (BluetoothDevice device : pairedDevices) {
+          // Add the name and address to an array adapter to show in a ListView
+          Log.d(TAG, "pairedDevice.Name : " + device.getName());
+          Log.d(TAG, "pairedDevice.Address : " + device.getAddress());
+          Log.d(TAG, "pairedDevice.Type : " + device.getType());
+          Log.d(TAG, "pairedDevice.Class : " + device.getBluetoothClass());
+
+        }
+      }
     }
     
     /** GATT Serverと接続する */
@@ -258,8 +280,10 @@ public class MainActivity extends Activity {
         Log.d(TAG, "uuid : " + uuid);
         mDevice = device;
         Log.d(TAG, "device.toString : " + device.toString());
-        Log.d(TAG, "mDevice.toString : " + mDevice.toString());
-
+        Log.d(TAG, "device.getType : " + getDeviceType(device.getType()));
+        Log.d(TAG, "device.getAddress(MAC Addr) : " + device.getAddress());
+        Log.d(TAG, "device.getBondState : " + getBondState(device.getBondState()));
+   
 
         Button btn = (Button)findViewById(R.id.btn_scan);
         btn.setText("Clear");
@@ -279,10 +303,6 @@ public class MainActivity extends Activity {
 //        }
 //      }
 
-      Log.d(TAG, "device.toString : " + device.toString());
-      Log.d(TAG, "device.getType : " + getDeviceType(device.getType()));
-      Log.d(TAG, "device.getAddress(MAC Addr) : " + device.getAddress());
-      Log.d(TAG, "device.getBondState : " + getBondState(device.getBondState()));
     }};
      
     public static void setStatus(BleStatus status) {
@@ -416,7 +436,7 @@ public class MainActivity extends Activity {
 
              if (state == BluetoothDevice.BOND_BONDED && prevState == BluetoothDevice.BOND_BONDING) {
                Toast.makeText(getApplicationContext(), "paired", Toast.LENGTH_LONG).show();
-               mDevice.connectGatt(getApplicationContext(), false, mMyBluetoothCallback);
+               //mDevice.connectGatt(getApplicationContext(), false, mMyBluetoothCallback);
 
              } else if (state == BluetoothDevice.BOND_NONE && prevState == BluetoothDevice.BOND_BONDED){
                Toast.makeText(getApplicationContext(), "unpaired", Toast.LENGTH_LONG).show();
