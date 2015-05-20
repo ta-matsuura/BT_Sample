@@ -21,13 +21,11 @@ import android.util.Log;
 public class MyBluetoothGattCallback extends BluetoothGattCallback{
   private static final String TAG = "BLESample";
   private BleScanGattHandler mHandler;
-  private boolean isWriting;
   private BluetoothGatt mGatt;
   private BluetoothGattService mGattService;
 
   public MyBluetoothGattCallback(Context context, BleScanGattHandler handler) {
     mHandler = handler;
-    isWriting = false;
   }
 
   @Override
@@ -54,18 +52,14 @@ public class MyBluetoothGattCallback extends BluetoothGattCallback{
     Log.d(TAG, "START -> onCharacteristicWrite() status(0:success, 257:fail) : " + status);
     super.onCharacteristicWrite(gatt, characteristic, status);
     
-    if(!isWriting) {
-      Message message = new Message();
-      Bundle bundle = new Bundle();
-      bundle.putString("char_write_result", characteristic.getStringValue(0));
-      Log.d(TAG, "char_write_result : " + characteristic.getStringValue(0));
+    Message message = new Message();
+    Bundle bundle = new Bundle();
+    bundle.putString("char_write_result", characteristic.getStringValue(0));
+    Log.d(TAG, "char_write_result : " + characteristic.getStringValue(0));
 
-      message.setData(bundle);
-      mHandler.sendMessage(message);
-    } else {
-      Log.d(TAG, "waiting for finishing writing .....");
-      //gatt.executeReliableWrite();
-    }
+    message.setData(bundle);
+    mHandler.sendMessage(message);
+
 
   }
 
@@ -73,8 +67,13 @@ public class MyBluetoothGattCallback extends BluetoothGattCallback{
   public void onCharacteristicChanged(BluetoothGatt gatt,
       BluetoothGattCharacteristic characteristic) {
     super.onCharacteristicChanged(gatt, characteristic);
-    Log.d(TAG, "START -> onCharacteristicChanged() ");
-
+    Log.d(TAG, "START -> onCharacteristicChanged() value : " + characteristic.getStringValue(0));
+    
+    Message message = new Message();
+    Bundle bundle = new Bundle();
+    bundle.putString("onCharacteristicChanged", characteristic.getStringValue(0));
+    message.setData(bundle);
+    mHandler.sendMessage(message);
   }
 
   @Override
@@ -181,6 +180,30 @@ public class MyBluetoothGattCallback extends BluetoothGattCallback{
     return state;
   }
   
+  public void enableNotify(boolean enable) {
+    Log.d(TAG, " enableNotify : " + enable);
+
+    if(mGattService == null) {
+      return;
+    }
+    BluetoothGattCharacteristic characteristic =
+        mGattService.getCharacteristic(UUID.fromString(BleUuid.UUID_TEST_READNOTIF));
+    if(characteristic == null) {
+      Log.d(TAG, " characteristic is NULL.");
+      MainActivity.setStatus(BleStatus.CHARACTERISTIC_NOT_FOUND);
+      return;
+    }
+    Log.d(TAG, " enableNotify is : " + mGatt.setCharacteristicNotification(characteristic, enable));
+    BluetoothGattDescriptor disc = characteristic.getDescriptor(UUID.fromString(BleUuid.UUID_CCCD));
+    if (disc != null) {
+      Log.d(TAG, " disc is not null !!");
+      disc.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);      
+      mGatt.writeDescriptor(disc);
+    }else {
+      Log.d(TAG, " disc is null..");
+    }
+  }
+  
   public void writeRequest() {
     if(mGattService == null) {
       return;
@@ -214,6 +237,7 @@ public class MyBluetoothGattCallback extends BluetoothGattCallback{
       if (characteristic != null) {
         characteristic.setValue(MainActivity.getWriteLongString());
         mGatt.writeCharacteristic(characteristic);
+        
       }
 
 //    if (mGatt.beginReliableWrite()) {
@@ -242,6 +266,7 @@ public class MyBluetoothGattCallback extends BluetoothGattCallback{
     if(mGattService == null) {
       return;
     }
+    
     BluetoothGattCharacteristic characteristic =
         mGattService.getCharacteristic(UUID.fromString(BleUuid.UUID_TEST_READWRITE));
     if (characteristic == null) {

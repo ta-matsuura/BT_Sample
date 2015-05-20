@@ -75,7 +75,7 @@ public class MainActivity extends Activity {
               scan();
             }
           }
-      });
+        });
         findViewById(R.id.btn_connect).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,6 +88,12 @@ public class MainActivity extends Activity {
                 disconnect();
             }
         });
+        findViewById(R.id.btn_notifi).setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+              enableNotify();
+          }
+      });
         mStatusText = (TextView)findViewById(R.id.text_status);
         mEditText   = (EditText)findViewById(R.id.editor1);
         mEditText2   = (EditText)findViewById(R.id.editor2);
@@ -104,6 +110,13 @@ public class MainActivity extends Activity {
 //        intentfilter.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
         IntentFilter intent = new IntentFilter(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
         registerReceiver(mReceiver, intent);
+    }
+    private void enableNotify() {
+      if (mMyBluetoothCallback != null) {
+        mMyBluetoothCallback.enableNotify(true);
+        Toast.makeText(getApplicationContext(), "Notifyを設定しました", Toast.LENGTH_SHORT).show();
+
+      }
     }
     
     /** BLE機器を解除する */
@@ -422,6 +435,10 @@ public class MainActivity extends Activity {
         if (bundle.get("char_read_result") != null) {
           TextView tx = (TextView)findViewById(R.id.read_result);
           tx.setText(bundle.get("char_read_result").toString());
+        }
+        if (bundle.get("onCharacteristicChanged") != null) {
+          Toast.makeText(getApplicationContext(), "onCharacteristicChanged : "
+        + bundle.get("onCharacteristicChanged").toString(), Toast.LENGTH_SHORT).show();
         }
       }
     };
