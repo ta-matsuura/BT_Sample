@@ -211,8 +211,10 @@ public class MyBluetoothGattCallback extends BluetoothGattCallback{
    
       BluetoothGattCharacteristic characteristic =
           mGattService.getCharacteristic(UUID.fromString(BleUuid.UUID_TEST_READWRITE));
-      characteristic.setValue(MainActivity.getWriteLongString());
-      mGatt.writeCharacteristic(characteristic);
+      if (characteristic != null) {
+        characteristic.setValue(MainActivity.getWriteLongString());
+        mGatt.writeCharacteristic(characteristic);
+      }
 
 //    if (mGatt.beginReliableWrite()) {
 //    

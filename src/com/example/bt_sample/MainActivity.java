@@ -208,7 +208,7 @@ public class MainActivity extends Activity {
        * なぜかうまくいかない */
       //
       //Log.v(TAG,"mDevice.createBond() : " + mDevice.createBond());
-      
+      Log.d(TAG, "Connect to " + mDevice.toString());
       mDevice.connectGatt(getApplicationContext(), false, mMyBluetoothCallback);      
     }
  
