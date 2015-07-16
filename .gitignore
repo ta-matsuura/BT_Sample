@@ -6,3 +6,7 @@ libs/
 bin/
 *.swp
 **/*.swp
+/.gradle/
+/local.properties
+.DS_Store
+*.iml

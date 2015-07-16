@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/Users/txm/AndroidStudioProjects/BT_Sample/assets"/></dataSet><dataSet config="debug"><source path="/Users/txm/AndroidStudioProjects/BT_Sample/build-types/debug/assets"/></dataSet></merger>
