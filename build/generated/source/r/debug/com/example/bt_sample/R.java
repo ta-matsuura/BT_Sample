@@ -18,12 +18,13 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f080014;
+        public static final int action_settings=0x7f080018;
         public static final int btn_connect=0x7f080003;
         public static final int btn_disconnect=0x7f080004;
         public static final int btn_mtu_request=0x7f080010;
         public static final int btn_notifi=0x7f080005;
         public static final int btn_read=0x7f08000c;
+        public static final int btn_rssi=0x7f080017;
         public static final int btn_scan=0x7f080002;
         public static final int btn_write=0x7f080008;
         public static final int btn_write2=0x7f080013;
@@ -31,12 +32,15 @@ public final class R {
         public static final int divider2=0x7f080009;
         public static final int divider3=0x7f08000d;
         public static final int divider4=0x7f080011;
+        public static final int divider5=0x7f080014;
         public static final int editor1=0x7f080007;
         public static final int editor2=0x7f080012;
         public static final int mtu_title=0x7f08000e;
         public static final int mtu_value=0x7f08000f;
         public static final int read_result=0x7f08000b;
         public static final int read_title=0x7f08000a;
+        public static final int rssi_area=0x7f080016;
+        public static final int rssi_title=0x7f080015;
         public static final int textView=0x7f080000;
         public static final int text_status=0x7f080001;
     }

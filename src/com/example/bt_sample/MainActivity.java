@@ -426,6 +426,27 @@ public class MainActivity extends Activity {
         mMyBluetoothCallback.writeLongStringRequest();
       }
     }
+
+    public void onClickWriteButton3(View v) {
+        Log.v(TAG, "onClickWriteButton3");
+        if (mDevice == null) {
+            Toast.makeText(getApplicationContext(), "デバイスが見つかりません。スキャンが必要です。", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (mStatus != BleStatus.GATT_SERVICE_DISCOVERED) {
+            Toast.makeText(getApplicationContext(), "GATT Serviceに接続してください。", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        mDialog.setMessage("Getting RSSI・・・");
+        mDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        mDialog.setCanceledOnTouchOutside(false);
+        mDialog.show();
+        if(mMyBluetoothCallback != null) {
+            mMyBluetoothCallback.getRssiRequest();
+        }
+    }
+
     private BleScanGattHandler myHandler = new BleScanGattHandler(){
       @Override
       public void onProcessCompleted(Bundle bundle) {
@@ -439,6 +460,13 @@ public class MainActivity extends Activity {
         if (bundle.get("onCharacteristicChanged") != null) {
           Toast.makeText(getApplicationContext(), "onCharacteristicChanged : "
         + bundle.get("onCharacteristicChanged").toString(), Toast.LENGTH_SHORT).show();
+        }       
+        if (bundle.get("onReadRemoteRssi") != null) {
+            TextView tx = (TextView)findViewById(R.id.rssi_area);
+            tx.setText(bundle.get("onReadRemoteRssi").toString());
+        }
+        if (bundle.get("disconnected") != null) {
+            Toast.makeText(getApplicationContext(), "Disconnected !!! ", Toast.LENGTH_SHORT).show();
         }
       }
     };

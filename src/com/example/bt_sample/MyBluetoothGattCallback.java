@@ -102,7 +102,13 @@ public class MyBluetoothGattCallback extends BluetoothGattCallback{
   @Override
   public void onReadRemoteRssi(BluetoothGatt gatt, int rssi, int status) {
     super.onReadRemoteRssi(gatt, rssi, status);
-    Log.d(TAG, "START -> onReadRemoteRssi() ");
+    Log.d(TAG, "START -> onReadRemoteRssi() rssi: " + rssi + "  status: " + status);
+
+    Message message = new Message();
+    Bundle bundle = new Bundle();
+    bundle.putString("onReadRemoteRssi", Integer.toString(rssi));
+    message.setData(bundle);
+    mHandler.sendMessage(message);
 
   }
 
@@ -120,10 +126,6 @@ public class MyBluetoothGattCallback extends BluetoothGattCallback{
     Log.d(TAG, "START ---> onConnectionStateChange : " + getGattStatus(status) + "  newState(2:connected, 0:disconn) : " + newState);
     if (status != BluetoothGatt.GATT_SUCCESS) {
       gatt.close();
-      Message message = new Message();
-      Bundle bundle = new Bundle();
-      message.setData(bundle);
-      mHandler.sendMessage(message);
       MainActivity.setStatus(BleStatus.GATT_DISCONNECTED);
       return;
     }
@@ -133,7 +135,13 @@ public class MyBluetoothGattCallback extends BluetoothGattCallback{
       // サービスを検索する
       gatt.discoverServices();
     } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
-      // GATT通信から切断された
+      Message message = new Message();
+      Bundle bundle = new Bundle();
+      bundle.putString("disconnected", "disconnected");
+      message.setData(bundle);
+      mHandler.sendMessage(message);
+
+        // GATT通信から切断された
       MainActivity.setStatus(BleStatus.GATT_DISCONNECTED);
       gatt.close();
     } else if (newState == BluetoothProfile.STATE_CONNECTING) {
@@ -240,26 +248,13 @@ public class MyBluetoothGattCallback extends BluetoothGattCallback{
         
       }
 
-//    if (mGatt.beginReliableWrite()) {
-//    
-//      BluetoothGattCharacteristic characteristic =
-//          mGattService.getCharacteristic(UUID.fromString(BleUuid.UUID_TEST_READWRITE));
-//  
-//      if (characteristic == null) {
-//        // キャラクタリスティックが見つからなかった
-//        MainActivity.setStatus(BleStatus.CHARACTERISTIC_NOT_FOUND);
-//      } else {
-//        if(characteristic.setValue(MainActivity.getWriteLongString())) {
-//          if(mGatt.writeCharacteristic(characteristic)){
-//            Log.d(TAG, " Write request operation was initiated successfully. Please wait callback.");
-//          }else {
-//            Log.d(TAG, " writeCharacteristic is failed");
-//          }
-//        }else{
-//          Log.d(TAG, " setValue is failed");
-//        }              
-//      }
-//    }
+
+  }
+  public void getRssiRequest() {
+    if(mGattService == null) {
+      return;
+    }
+    mGatt.readRemoteRssi();
   }
   
   public void readRequest() {
